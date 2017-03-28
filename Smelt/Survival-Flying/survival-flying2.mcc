@@ -1,0 +1,14 @@
+>{"type":"repeating","conditional":false}
+	/Searge
+
+>{"type":"chain","conditional":false}
+	/effect @a[tag=flying] minecraft:levitation 0 0
+	/effect @a[tag=flying] minecraft:levitation 1 255 true
+	/effect @a[tag=flying] minecraft:speed 1 1 true
+	/effect @a[tag=flying] minecraft:jump_boost 5 255 true
+	/effect @a[score_rightclick_min=1,tag=flying] minecraft:levitation 0 0
+	/effect @a[score_rightclick_min=1,tag=flying] minecraft:levitation 1 5 true
+	/effect @a[score_sneak_min=1,tag=flying] minecraft:levitation 0 0
+	/effect @a[score_sneak_min=1,tag=flying] minecraft:levitation 1 245 true
+	/scoreboard players set @a[score_rightclick_min=1] rightclick 0
+	/scoreboard players set @a[score_sneak_min=1] sneak 0

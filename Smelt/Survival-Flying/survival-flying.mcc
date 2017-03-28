@@ -1,0 +1,16 @@
+#start flying
+>{"type":"repeating","conditional":false}
+	/execute @a[tag=flying] ~ ~ ~ /fill ~-5 ~-5 ~-5 ~5 ~5 ~5 air 0 replace glass
+
+>{"type":"chain","conditional":false}
+	/scoreboard players tag @a[tag=flying] remove flying
+	/execute @a ~ ~ ~ detect ~ ~-1 ~ glass 0 /scoreboard players tag @a[c=1] add flying
+	/scoreboard players tag @a[score_jump_min=1] add flying
+	/execute @a[score_jump_min=1] ~ ~ ~ /fill ~-1 ~ ~-1 ~1 ~ ~1 glass 0 replace air
+	/execute @a[tag=flying] ~ ~ ~ /fill ~-1 ~-1 ~-1 ~1 ~-1 ~1 glass 0 replace air
+	/execute @a[score_sneak_min=1] ~ ~ ~ /fill ~ ~-1 ~ ~ ~-1 ~ air 0 replace glass
+	/execute @a[score_sneak_min=1] ~ ~ ~ /fill ~-1 ~-2 ~-1 ~1 ~-2 ~1 glass 0 replace air
+	/scoreboard players add @a[score_jump_min=1] counter 1
+	/scoreboard players set @a[score_jump_min=1,score_counter_min=20] jump 0
+	/scoreboard players set @a[score_counter_min=20] counter 0
+	/scoreboard players set @a[score_sneak_min=1] sneak 0

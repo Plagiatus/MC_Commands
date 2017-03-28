@@ -1,0 +1,113 @@
+#start_second_phase
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	//reset timer
+	/scoreboard players set @a timer 0
+
+	//off
+	/execute @e[type=area_effect_cloud,name=items_first_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}		//turn off first phase item handling
+	/execute @e[type=area_effect_cloud,name=movement] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn off movement handling
+	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}			//turn off origin creator 1
+	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~4 ~ ~ {auto:0}			//turn off origin creator 2
+
+	//on
+	/execute @e[type=area_effect_cloud,name=items_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	//turn on second phase item handling
+	/execute @e[type=area_effect_cloud,name=powerup] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}				//turn on second phase powerup
+
+	//remove origin and target, if they still exist
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+
+	//calculate amount of powerups possible
+	/scoreboard players set @p[tag=currentPlayer] powerup 0
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_team_min=1,score_team=1] ~ ~ ~ /scoreboard players add @p[tag=currentPlayer,team=red] powerup 1
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_team_min=2,score_team=2] ~ ~ ~ /scoreboard players add @p[tag=currentPlayer,team=blue] powerup 1
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_team_min=3,score_team=3] ~ ~ ~ /scoreboard players add @p[tag=currentPlayer,team=green] powerup 1
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_team_min=4,score_team=4] ~ ~ ~ /scoreboard players add @p[tag=currentPlayer,team=yellow] powerup 1
+
+#powerup
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+>{"type":"chain", "conditional":false, "auto":true}
+
+
+
+	//display powerups
+	/title @p[tag=currentPlayer] actionbar ["",{"score":{"name":"@p[tag=currentPlayer]","objective":"powerup"},"color":"white","bold":true},{"text":" powerups available","color":"white","bold":false}]
+	
+	//+1
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=orange /scoreboard players remove @p[tag=currentPlayer] powerup 1
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=orange /scoreboard players add @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] power 1
+
+	//+max
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp = @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] power
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp -= #8 power
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @p[tag=currentPlayer] powerup += @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp
+	/execute @p[tag=currentPlayer,score_powerup_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players set @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] power 8 //can be maxed
+	/execute @p[tag=currentPlayer,score_powerup=-1] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /tellraw @p[tag=currentPlayer,score_powerup=-1] ["",{"text":"Not enough power left to fully power cell.","color":"red"}] //cannot be maxed
+	/execute @p[tag=currentPlayer,score_powerup=-1] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @p[tag=currentPlayer] powerup -= @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp //cannot be maxed
+
+	//remove carpet & refresh blocks
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet * /execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet * /setblock ~ ~1 ~ air
+
+	//end phase
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=red] ~ ~ ~ /scoreboard players add @r[type=area_effect_cloud,score_power_min=1,score_power=7,score_team=1,score_team_min=1] power 1
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=red] ~ ~ ~ /scoreboard players remove @p[tag=currentPlayer,score_rightclick_min=1,team=red] powerup 1
+
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=blue] ~ ~ ~ /scoreboard players add @r[type=area_effect_cloud,score_power_min=1,score_power=7,score_team=2,score_team_min=2] power 1
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=blue] ~ ~ ~ /scoreboard players remove @p[tag=currentPlayer,score_rightclick_min=1,team=blue] powerup 1
+
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=green] ~ ~ ~ /scoreboard players add @r[type=area_effect_cloud,score_power_min=1,score_power=7,score_team=3,score_team_min=3] power 1
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=green] ~ ~ ~ /scoreboard players remove @p[tag=currentPlayer,score_rightclick_min=1,team=green] powerup 1
+
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=yellow] ~ ~ ~ /scoreboard players add @r[type=area_effect_cloud,score_power_min=1,score_power=7,score_team=4,score_team_min=4] power 1
+	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=yellow] ~ ~ ~ /scoreboard players remove @p[tag=currentPlayer,score_rightclick_min=1,team=yellow] powerup 1
+
+
+	//powerup is 0
+	/execute @p[tag=currentPlayer,score_powerup=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=end_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/scoreboard players set @p[tag=currentPlayer,score_powerup=0] rightclick 0
+
+	//debug thingys
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target 					//remove target
+	/execute @e[type=area_effect_cloud,name=movement] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn off movement handling
+
+#items_second_phase
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+>{"type":"chain", "conditional":false, "auto":true}
+	/kill @e[type=item]
+	/clear @a[tag=!currentPlayer]
+	
+	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+
+	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.7 minecraft:air 1 0
+	
+	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.8 minecraft:carrot_on_a_stick 1 0 {HideFlags:4,Unbreakable:1,display:{Name:"End Turn",Lore:["Rightclick to end your turn.","If you have powerups left, they will be","distributed randomly"]}}
+
+	/clear @p[tag=currentPlayer,score_rightclick_min=1]
+
+
+
+#end_second_phase
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	
+	//off
+	/execute @e[type=area_effect_cloud,name=items_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn on second phase item handling
+	/execute @e[type=area_effect_cloud,name=powerup] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn on second phase powerup
+	
+	//next player
+	/execute @e[type=area_effect_cloud,name=next_player] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}

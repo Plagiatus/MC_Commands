@@ -1,0 +1,95 @@
+#reset
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+
+	/execute @e[name=stats,type=armor_stand,score_players=1,score_players_min=1] ~ ~ ~ /tellraw @a ["",{"selector":"@a[team=!]","color":"gold"},{"text":" overpowered all of their foes and won the game!","color":"gold"}]
+
+	/scoreboard teams leave @a
+	/scoreboard players tag @a[tag=currentPlayer] remove currentPlayer
+	/scoreboard players reset * playernr
+	/gamemode 2 @a
+
+	//off
+	/execute @e[type=area_effect_cloud,name=items_first_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}		//turn off first phase item handling
+	/execute @e[type=area_effect_cloud,name=movement] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn off movement handling
+	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}			//turn off origin creator 1
+	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~4 ~ ~ {auto:0}			//turn off origin creator 2
+	/execute @e[type=area_effect_cloud,name=items_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off second phase item handling
+	/execute @e[type=area_effect_cloud,name=powerup] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn off second phase powerup
+
+	/execute @e[type=area_effect_cloud,name=things_during_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off effects
+	/effect @a clear
+
+
+	/execute @e[type=area_effect_cloud,name=remove_carpet] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}			//turn off carpet removal
+
+	/execute @e[type=area_effect_cloud,name=someone_dead_game_over] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off game-over
+
+	/execute @e[type=area_effect_cloud,name=timer] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off timer
+
+	//remove origin and target, if they still exist
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+
+	/tp @a 16 96 -11
+
+	//OLD LOBBY START SIGN
+	/setblock 21 83 -18 minecraft:wall_sign facing=south replace {Text1:"{\"text\":\"START\",\"bold\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=area_effect_cloud,name=start_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Make sure only\"}",Text3:"{\"text\":\"one player per\"}",Text4:"{\"text\":\"team.\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/setblock ~ ~ ~ air\"}}"}
+
+
+
+#start_game
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	//generate new map & reset the whole board
+	
+	/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=2] ~ ~ ~ /setblock -2 57 34 minecraft:redstone_block
+	/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block 			
+	/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block 			
+
+	/clear @a
+
+	/scoreboard players set @a playernr 0
+	/scoreboard players set @r[score_playernr=0,team=!] playernr 1
+	/scoreboard players set @r[score_playernr=0,team=!] playernr 2
+	/scoreboard players set @r[score_playernr=0,team=!] playernr 3
+	/scoreboard players set @r[score_playernr=0,team=!] playernr 4
+
+	/scoreboard players reset @a[score_playernr=0] playernr
+
+	/scoreboard players tag @p[score_playernr=1,score_playernr_min=1] add currentPlayer
+
+	/scoreboard players set @a timer 0
+
+	//on
+	/execute @e[type=area_effect_cloud,name=items_first_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}		//turn on first phase item handling
+	/execute @e[type=area_effect_cloud,name=movement] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}				//turn on movement handling
+	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}			//turn on origin creator 1
+	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~4 ~ ~ {auto:1}			//turn on origin creator 2
+
+	/execute @e[type=area_effect_cloud,name=things_during_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	//turn on effects
+	/execute @e[type=area_effect_cloud,name=remove_carpet] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}			//turn on carpet removal
+
+
+	//OLD LOBBY START SIGN
+	//setblock 21 83 -18 minecraft:air
+
+
+#effects
+
+>{"type":"repeating", "conditional":false, "auto":true}
+	/effect @a minecraft:weakness 1 10 true
+
+>{"type":"chain", "conditional":false, "auto":true}
+
+#things_during_game
+
+>{"type":"repeating", "conditional":false, "auto":false}
+	/effect @a[team=!] minecraft:levitation 1000000 255 true
+
+>{"type":"chain", "conditional":false, "auto":true}

@@ -1,0 +1,240 @@
+$origin = @e[type=area_effect_cloud,tag=origin]
+$target = @e[type=area_effect_cloud,tag=target]
+
+
+#create_origin
+
+>{"type":"repeating", "conditional":false, "auto":false}
+	/testfor @e[type=area_effect_cloud,tag=origin]
+>{"type":"repeating", "conditional":true, "auto":true}	
+	/execute @e[type=area_effect_cloud,name=movement] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+>{"type":"repeating", "conditional":false, "auto":true}
+	/testforblock ~-2 ~ ~ minecraft:repeating_command_block * {SuccessCount:0}
+
+>{"type":"repeating", "conditional":true, "auto":false}
+	/execute @e[type=area_effect_cloud,name=movement] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+
+	/tp @e[type=armor_stand,tag=origin_visual] @e[type=armor_stand,name=stats]
+
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet color=white /scoreboard players tag @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] add origin //add origin tag to one with carpet on top
+	/execute $origin ~ ~ ~ /setblock ~ ~1 ~ air																										//remove carpet on top
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_power=1] remove origin 														//only 1 power = not a viable block
+	/execute @p[tag=currentPlayer,team=red] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_team_min=2] remove origin 		//wrong team
+	/execute @p[tag=currentPlayer,team=blue] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_team_min=3] remove origin 	//wrong team
+	/execute @p[tag=currentPlayer,team=blue] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_team=1] remove origin 		//wrong team
+	/execute @p[tag=currentPlayer,team=green] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_team_min=4] remove origin 	//wrong team
+	/execute @p[tag=currentPlayer,team=green] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_team=2] remove origin 		//wrong team
+	/execute @p[tag=currentPlayer,team=yellow] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_team=3] remove origin 		//wrong team
+	
+
+	/execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}																//set new glass
+	
+	//reactivate next player
+	/execute @e[type=area_effect_cloud,name=next_player] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}
+
+	//end phase 
+	/execute @p[tag=currentPlayer,score_rightclick_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/scoreboard players set @p[tag=currentPlayer,score_rightclick_min=1] rightclick 0
+
+
+
+
+#movement
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+>{"type":"chain", "conditional":false, "auto":true}
+	////////////////
+	//detect target
+	////////////////
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet * /scoreboard players tag @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] add target	//add target tag to the new one with carpet on top
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~ ~ carpet * /scoreboard players tag @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] add target	//add target tag to the new one with carpet on top
+	/execute @e[type=area_effect_cloud,tag=target] ~ ~ ~ /setblock ~ ~1 ~ air
+
+	//reset playertimer
+	/execute @e[type=area_effect_cloud,tag=target] ~ ~ ~ /scoreboard players set @p[tag=currentPlayer] timer 0
+
+	//not a viable target
+	/scoreboard players tag @e[type=area_effect_cloud,tag=!possibleTarget] remove target {Tags:["target"]}
+
+	//old origin
+
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove target {Tags:["target"]}
+
+
+	//new origin
+	//red
+	/execute @p[tag=currentPlayer,team=red] ~ ~ ~ /testfor @e[type=area_effect_cloud,tag=target,score_team_min=1,score_team=1,score_power_min=2]
+	>{"conditional":true}
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=1,score_team=1] add origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	>{"conditional":false}
+	/execute @p[tag=currentPlayer,team=red] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=1,score_team=1,score_power=1] remove target
+
+	//blue
+	/execute @p[tag=currentPlayer,team=blue] ~ ~ ~ /testfor @e[type=area_effect_cloud,tag=target,score_team_min=2,score_team=2,score_power_min=2]
+	>{"conditional":true}
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=2,score_team=2] add origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	>{"conditional":false}
+	/execute @p[tag=currentPlayer,team=blue] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=2,score_team=2,score_power=1] remove target
+
+	//green
+	/execute @p[tag=currentPlayer,team=green] ~ ~ ~ /testfor @e[type=area_effect_cloud,tag=target,score_team_min=3,score_team=3,score_power_min=2]
+	>{"conditional":true}
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=3,score_team=3] add origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	>{"conditional":false}
+	/execute @p[tag=currentPlayer,team=green] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=3,score_team=3,score_power=1] remove target
+
+	//yellow
+	/execute @p[tag=currentPlayer,team=yellow] ~ ~ ~ /testfor @e[type=area_effect_cloud,tag=target,score_team_min=4,score_team=4,score_power_min=2]
+	>{"conditional":true}
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=4,score_team=4] add origin
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	>{"conditional":false}
+	/execute @p[tag=currentPlayer,team=yellow] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,tag=target,score_team_min=4,score_team=4,score_power=1] remove target
+
+
+	//empty field
+
+	/testfor @e[type=area_effect_cloud,tag=target,score_power=0]
+	>{"conditional":true}
+	/scoreboard players operation $target power = $origin power
+	/scoreboard players operation $target power -= #1 power
+	/scoreboard players operation $origin power = #1 power
+	/scoreboard players operation $target team = $origin team
+	/scoreboard players tag $origin remove origin
+	/scoreboard players tag $target add origin
+	/scoreboard players tag $target remove target
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin,score_power=1] remove origin
+
+	>{"conditional":false}
+
+	//enemy field
+	/execute $target ~ ~ ~ /execute @e[type=area_effect_cloud,name=fight-calc] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	
+
+
+	//update visuals & update blocks around
+	/execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+
+	//end phase 
+	/execute @p[tag=currentPlayer,score_rightclick_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	//reset playertimer
+	/scoreboard players set @p[tag=currentPlayer,score_rightclick_min=1] timer 0
+	/scoreboard players set @p[tag=currentPlayer,score_rightclick_min=1] rightclick 0
+
+
+#fight-calc
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	//reset playertimer
+	/scoreboard players set @p[tag=currentPlayer] timer 0
+
+	/scoreboard players operation $origin powertemp = $origin power
+	/scoreboard players operation $origin powertemp -= $target power
+
+	//easy win
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp_min=2] ~ ~ ~ /scoreboard players operation $target power = $origin powertemp
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp_min=2] ~ ~ ~ /scoreboard players operation $target team = $origin team
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp_min=2] ~ ~ ~ /scoreboard players operation $origin power = #1 power
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp_min=2] ~ ~ ~ /scoreboard players operation $target powertemp = $origin powertemp
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp_min=2] ~ ~ ~ /scoreboard players tag $origin remove origin
+	/execute @e[type=area_effect_cloud,tag=target,score_powertemp_min=2] ~ ~ ~ /scoreboard players tag $target add origin
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp_min=2] ~ ~ ~ /scoreboard players tag $target remove target	
+
+
+	//obvious loss
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp=-2] ~ ~ ~ /scoreboard players operation $target power -= $origin power
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp=-2] ~ ~ ~ /scoreboard players operation $origin power = #1 power
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp=-2] ~ ~ ~ /scoreboard players tag $origin remove origin
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp=-2] ~ ~ ~ /scoreboard players tag $target remove target
+
+	//close win
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp=1,score_powertemp_min=1] ~ ~ ~ /execute @r[type=area_effect_cloud,tag=cw,name=decider] ~ ~ ~ /blockdata ~ ~-1 ~ {auto:1}
+
+	//tied
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp=0,score_powertemp_min=0] ~ ~ ~ /execute @r[type=area_effect_cloud,tag=tie,name=decider] ~ ~ ~ /blockdata ~ ~-1 ~ {auto:1}
+
+	//close loss
+	/execute @e[type=area_effect_cloud,tag=origin,score_powertemp=-1,score_powertemp_min=-1] ~ ~ ~ /execute @r[type=area_effect_cloud,tag=cl,name=decider] ~ ~ ~ /blockdata ~ ~-1 ~ {auto:1}
+
+
+	//remove all targets left
+	/*													//moved to the calculation
+	/execute @e[type=area_effect_cloud,tag=target] ~ ~ ~ /w @a[tag=debug] you should never see this message. Still, apparently there is still a "target" entity left. Emergency measures in place.	//debug: still a target present
+	/execute @e[type=area_effect_cloud,tag=target] ~ ~ ~ /kill @e[type=area_effect_cloud,tag=origin,c=1]
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	*/
+
+
+#items_first_phase
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+>{"type":"chain", "conditional":false, "auto":true}
+	/kill @e[type=item]
+	/clear @a[tag=!currentPlayer]
+	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.0 minecraft:carpet 1 0 {CanPlaceOn:["minecraft:glass","minecraft:cobblestone","minecraft:jungle_stairs","minecraft:purpur_stairs","minecraft:sandstone_stairs","minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"Selector",Lore:["Rightclick on top of a cell to select it"]}}
+	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.7 minecraft:carrot_on_a_stick 1 0 {HideFlags:4,Unbreakable:1,display:{Name:"End Turn",Lore:["Rightclick to continue into the second phase"]}}
+
+
+#someone_dead_game_over
+
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+
+>{"type":"chain", "conditional":false, "auto":true}
+	
+	//someone dead
+
+	/scoreboard players set @a amountofcells 0
+	/execute @e[type=area_effect_cloud,score_team=1,score_team_min=1,tag=cellMarker] ~ ~ ~ /scoreboard players add @a[team=red] amountofcells 1
+	/execute @e[type=area_effect_cloud,score_team=2,score_team_min=2,tag=cellMarker] ~ ~ ~ /scoreboard players add @a[team=blue] amountofcells 1
+	/execute @e[type=area_effect_cloud,score_team=3,score_team_min=3,tag=cellMarker] ~ ~ ~ /scoreboard players add @a[team=green] amountofcells 1
+	/execute @e[type=area_effect_cloud,score_team=4,score_team_min=4,tag=cellMarker] ~ ~ ~ /scoreboard players add @a[team=yellow] amountofcells 1
+
+	
+	/scoreboard players reset @a[team=!,score_amountofcells=0] playernr
+	/execute @a[team=!,score_amountofcells=0] ~ ~ ~ /tellraw @a ["",{"selector":"@a[team=!,score_amountofcells=0]"},{"text":" was overpowered and is out of the game.","color":"red"}]
+	/scoreboard teams leave @a[team=!,score_amountofcells=0]
+
+
+	//gameover
+	/execute @e[name=stats,type=armor_stand,score_players=1,score_players_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=someone_dead_game_over] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}
+	/execute @e[name=stats,type=armor_stand,score_players=1,score_players_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=reset] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+	
+
+#timer
+
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+
+>{"type":"chain", "conditional":false, "auto":true}
+	/scoreboard players add @p[tag=currentPlayer] timer 1
+	/tellraw @p[tag=currentPlayer,score_timer=400,score_timer_min=400] ["",{"text":"You haven't done any action for the last 20 seconds. Do something in the next 10 seconds or your turn will be ended.","color":"dark_red","italic":true}]
+	/execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=skip_turn] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+
+#skip_turn
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	/blockdata ~1 ~ ~ {auto:1}
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	/blockdata ~1 ~ ~ {auto:1}
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	/tellraw @a ["",{"selector":"@p[tag=currentPlayer]"},{"text":" is not responding. Forcing advancement of their turn.","color":"dark_red","italic":true}]
+	/scoreboard players set @p[tag=currentPlayer] rightclick 1

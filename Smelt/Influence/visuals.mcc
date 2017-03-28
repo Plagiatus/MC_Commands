@@ -1,0 +1,109 @@
+$origin = @e[type=area_effect_cloud,tag=origin]
+$target = @e[type=area_effect_cloud,tag=target]
+
+#blocks
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	//red
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=west,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=south,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=north,half=top
+
+	//blue
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=west,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=south,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=north,half=top
+
+	//green
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=west,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=south,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=north,half=top
+
+	//yellow
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=west,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=south,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=north,half=top
+
+
+	//names 
+	//entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=0,score_power=0] {CustomName:""}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=1] {CustomName:"1",CustomNameVisible:1b}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=2,score_power=2] {CustomName:"2",CustomNameVisible:1b}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=3,score_power=3] {CustomName:"3",CustomNameVisible:1b}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=4,score_power=4] {CustomName:"4",CustomNameVisible:1b}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=5,score_power=5] {CustomName:"5",CustomNameVisible:1b}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=6,score_power=6] {CustomName:"6",CustomNameVisible:1b}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=7,score_power=7] {CustomName:"7",CustomNameVisible:1b}
+	/entitydata @e[type=area_effect_cloud,tag=cellMarker,score_power_min=8,score_power=8] {CustomName:"8",CustomNameVisible:1b}
+
+	//remove glass/set new glass
+	/execute @e[type=area_effect_cloud,name=handle_supportblocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+#origin_visual
+>{"type":"repeating", "conditional":false, "auto":true}
+	/execute @e[type=area_effect_cloud,tag=origin] ~ ~ ~ /teleport @e[type=armor_stand,tag=origin_visual] ~ ~1 ~
+
+>{"type":"chain", "conditional":false, "auto":true}
+	/tp @e[type=armor_stand,tag=origin_visual] ~ ~ ~ ~1 ~
+
+
+#handle_supportblocks
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	/scoreboard players tag @e[type=area_effect_cloud,tag=possibleTarget] remove possibleTarget
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ /fill ~ ~ ~ ~ ~ ~ air 0 replace glass
+	/execute $origin ~ ~ ~ /execute @e[type=area_effect_cloud,r=3,tag=cellMarker] ~ ~ ~ /fill ~ ~ ~ ~ ~ ~ glass 0 replace air
+	/execute $origin ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,r=3,tag=cellMarker] add possibleTarget
+
+	/execute @p[tag=currentPlayer,team=red] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,score_team=1,score_team_min=1] add possibleTarget
+	/execute @p[tag=currentPlayer,team=blue] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,score_team=2,score_team_min=2] add possibleTarget
+	/execute @p[tag=currentPlayer,team=green] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,score_team=3,score_team_min=3] add possibleTarget
+	/execute @p[tag=currentPlayer,team=yellow] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,score_team=4,score_team_min=4] add possibleTarget
+
+/*
+#playerfeedback
+>{"type":"repeating", "conditional":false, "auto":true}
+	/scoreboard players set @a playerpower 0
+	/scoreboard players operation @p[team=red] playerpower += @e[type=area_effect_cloud,tag=cellMarker,score_team=1,score_team_min=1] power
+	/scoreboard players operation @p[team=blue] playerpower += @e[type=area_effect_cloud,tag=cellMarker,score_team=2,score_team_min=2] power
+	/scoreboard players operation @p[team=green] playerpower += @e[type=area_effect_cloud,tag=cellMarker,score_team=3,score_team_min=3] power
+	/scoreboard players operation @p[team=yellow] playerpower += @e[type=area_effect_cloud,tag=cellMarker,score_team=4,score_team_min=4] power
+	
+	/title @a[team=red] actionbar ["",{"score":{"name":"@p[team=red]","objective":"playerpower"},"color":"red"}]
+	/title @a[team=blue] actionbar ["",{"score":{"name":"@p[team=red]","objective":"playerpower"},"color":"blue"}]
+	/title @a[team=green] actionbar ["",{"score":{"name":"@p[team=red]","objective":"playerpower"},"color":"green"}]
+	/title @a[team=yellow] actionbar ["",{"score":{"name":"@p[team=red]","objective":"playerpower"},"color":"yellow"}]
+
+*/
+
+#remove_carpet
+>{"type":"repeating", "conditional":false, "auto":false}
+	/execute @p[tag=currentPlayer,score_carpet_min=1] ~ ~ ~ /fill ~-4 81 ~-4 ~4 81 ~4 air 0 replace carpet
+
+>{"type":"chain", "conditional":false, "auto":true}
+	//reset playertimer
+	/scoreboard players set @p[tag=currentPlayer,score_carpet_min=1] timer 0
+	/scoreboard players set @p[score_carpet_min=1] carpet 0

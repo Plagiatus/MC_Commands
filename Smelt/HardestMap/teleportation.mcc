@@ -1,0 +1,249 @@
+// triggers: A, B, C, D, E
+/*
+A: Z Value
+B: Modulo
+C: X Value
+D: Y Value
+E: Factor
+
+
+max scoreboard value is: 2147483647
+min scoreboard value is: -2147483648
+
+max world size is +/- 30.000.000 (2^24.8)
+*/
+
+#actionbar
+
+>{"type":"repeating", "conditional":false}
+	/execute @a ~ ~ ~ /title @a[c=1] actionbar ["",
+		{"score":{"name":"@a[c=1]","objective":"A"},"color":"gold"},
+		{"text":" - ","color":"none"},
+		{"score":{"name":"@a[c=1]","objective":"B"},"color":"gold"},
+		{"text":" - ","color":"none"},
+		{"score":{"name":"@a[c=1]","objective":"C"},"color":"gold"},
+		{"text":" - ","color":"none"},
+		{"score":{"name":"@a[c=1]","objective":"D"},"color":"gold"},
+		{"text":" - ","color":"none"},
+		{"score":{"name":"@a[c=1]","objective":"E"},"color":"gold"}
+		]
+
+
+#calculation/validation
+
+>{"type":"repeating", "conditional":false}
+	/Searge
+
+>{"type":"chain", "conditional":false}
+	$start = @a[score_start_min=1]
+	$startc1 = @a[score_start_min=1,c=1]
+	
+	/scoreboard players operation $start A *= $startc1 E
+	/scoreboard players operation $start C *= $startc1 E
+	/scoreboard players operation $start D *= $startc1 E
+
+	/scoreboard players operation $start A %= $startc1 B
+	/scoreboard players operation $start C %= $startc1 B
+	/scoreboard players operation $start D %= $startc1 B
+
+	/scoreboard players tag @a[tag=invalid] remove invalid
+	/scoreboard players tag @a[score_start_min=1,score_A_min=30000001] add invalid
+	/scoreboard players tag @a[score_start_min=1,score_C_min=30000001] add invalid
+	/scoreboard players tag @a[score_start_min=1,score_D_min=257] add invalid
+	/scoreboard players tag @a[score_start_min=1,score_A=-30000001] add invalid
+	/scoreboard players tag @a[score_start_min=1,score_C=-30000001] add invalid
+	/scoreboard players tag @a[score_start_min=1,score_D=0] add invalid
+
+	/execute @a[tag=!invalid,score_start_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=teleportationX+] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @a[tag=!invalid,score_start_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=teleportationX-] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @a[tag=!invalid,score_start_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=teleportationY] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @a[tag=!invalid,score_start_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=teleportationZ+] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @a[tag=!invalid,score_start_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=teleportationZ-] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+	/execute @a[tag=invalid] ~ ~ ~ /tellraw @a[tag=invalid,c=1,r=0] ["",{"text":"Values yielded no result.","color":"dark_red"}]
+	/scoreboard players set @a[tag=invalid] start 0
+	/scoreboard players set @a[tag=invalid] A 0
+	/scoreboard players set @a[tag=invalid] B 0
+	/scoreboard players set @a[tag=invalid] C 0
+	/scoreboard players set @a[tag=invalid] D 0
+	/scoreboard players set @a[tag=invalid] E 0
+	/scoreboard players tag @a[tag=invalid] remove invalid
+
+
+
+#teleportationX+
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	$2p24 = 16777216
+	$2p23 = 8388608
+	$2p22 = 4194304
+	$2p21 = 2097152
+	$2p20 = 1048576
+	$2p19 = 524288
+	$2p18 = 262144
+	$2p17 = 131072
+	$2p16 = 65536
+	$2p15 = 32768
+	$2p14 = 16384
+	$2p13 = 8192
+	$2p12 = 4096
+	$2p11 = 2048
+	$2p10 = 1024
+	$2p9 = 512
+	$2p8 = 256
+	$2p7 = 128
+	$2p6 = 64
+	$2p5 = 32
+	$2p4 = 16
+	$2p3 = 8
+	$2p2 = 4
+	$2p1 = 2
+	$2p0 = 1
+
+	$tp_c = @a[score_start_min=1,tag=!invalid,score_C_min=
+	
+	//get to the starting position
+	/tp @a[score_start_min=1,tag=!invalid] 0 0 0
+
+
+	/tp ${tp_c}${2p24}] ~${2p24} ~ ~
+	/scoreboard players remove ${tp_c}${2p24}] C $2p24
+	/tp ${tp_c}${2p23}] ~${2p23} ~ ~
+	/scoreboard players remove ${tp_c}${2p23}] C $2p23
+	/tp ${tp_c}${2p22}] ~${2p22} ~ ~
+	/scoreboard players remove ${tp_c}${2p22}] C $2p22
+	/tp ${tp_c}${2p21}] ~${2p21} ~ ~
+	/scoreboard players remove ${tp_c}${2p21}] C $2p21
+	/tp ${tp_c}${2p20}] ~${2p20} ~ ~
+	/scoreboard players remove ${tp_c}${2p20}] C $2p20
+	/tp ${tp_c}${2p19}] ~${2p19} ~ ~
+	/scoreboard players remove ${tp_c}${2p19}] C $2p19
+	/tp ${tp_c}${2p18}] ~${2p18} ~ ~
+	/scoreboard players remove ${tp_c}${2p18}] C $2p18
+	/tp ${tp_c}${2p17}] ~${2p17} ~ ~
+	/scoreboard players remove ${tp_c}${2p17}] C $2p17
+	/tp ${tp_c}${2p16}] ~${2p16} ~ ~
+	/scoreboard players remove ${tp_c}${2p16}] C $2p16
+	/tp ${tp_c}${2p15}] ~${2p15} ~ ~
+	/scoreboard players remove ${tp_c}${2p15}] C $2p15
+	/tp ${tp_c}${2p14}] ~${2p14} ~ ~
+	/scoreboard players remove ${tp_c}${2p14}] C $2p14
+	/tp ${tp_c}${2p13}] ~${2p13} ~ ~
+	/scoreboard players remove ${tp_c}${2p13}] C $2p13
+	/tp ${tp_c}${2p12}] ~${2p12} ~ ~
+	/scoreboard players remove ${tp_c}${2p12}] C $2p12
+	/tp ${tp_c}${2p11}] ~${2p11} ~ ~
+	/scoreboard players remove ${tp_c}${2p11}] C $2p11
+	/tp ${tp_c}${2p10}] ~${2p10} ~ ~
+	/scoreboard players remove ${tp_c}${2p10}] C $2p10
+	/tp ${tp_c}${2p9}] ~${2p9} ~ ~
+	/scoreboard players remove ${tp_c}${2p9}] C $2p9
+	/tp ${tp_c}${2p8}] ~${2p8} ~ ~
+	/scoreboard players remove ${tp_c}${2p8}] C $2p8
+	/tp ${tp_c}${2p7}] ~${2p7} ~ ~
+	/scoreboard players remove ${tp_c}${2p7}] C $2p7
+	/tp ${tp_c}${2p6}] ~${2p6} ~ ~
+	/scoreboard players remove ${tp_c}${2p6}] C $2p6
+	/tp ${tp_c}${2p5}] ~${2p5} ~ ~
+	/scoreboard players remove ${tp_c}${2p5}] C $2p5
+	/tp ${tp_c}${2p4}] ~${2p4} ~ ~
+	/scoreboard players remove ${tp_c}${2p4}] C $2p4
+	/tp ${tp_c}${2p3}] ~${2p3} ~ ~
+	/scoreboard players remove ${tp_c}${2p3}] C $2p3
+	/tp ${tp_c}${2p2}] ~${2p2} ~ ~
+	/scoreboard players remove ${tp_c}${2p2}] C $2p2
+	/tp ${tp_c}${2p1}] ~${2p1} ~ ~
+	/scoreboard players remove ${tp_c}${2p1}] C $2p1
+	/tp ${tp_c}${2p0}] ~${2p0} ~ ~
+	/scoreboard players remove ${tp_c}${2p0}] C $2p0
+
+#teleportationX-
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	$tp_c = @a[score_start_min=1,tag=!invalid,score_C=
+
+
+	/tp ${tp_c}-${2p24}] ~-${2p24} ~ ~
+	/scoreboard players add ${tp_c}-${2p24}] C $2p24
+	/tp ${tp_c}-${2p23}] ~-${2p23} ~ ~
+	/scoreboard players add ${tp_c}-${2p23}] C $2p23
+	/tp ${tp_c}-${2p22}] ~-${2p22} ~ ~
+	/scoreboard players add ${tp_c}-${2p22}] C $2p22
+	/tp ${tp_c}-${2p21}] ~-${2p21} ~ ~
+	/scoreboard players add ${tp_c}-${2p21}] C $2p21
+	/tp ${tp_c}-${2p20}] ~-${2p20} ~ ~
+	/scoreboard players add ${tp_c}-${2p20}] C $2p20
+	/tp ${tp_c}-${2p19}] ~-${2p19} ~ ~
+	/scoreboard players add ${tp_c}-${2p19}] C $2p19
+	/tp ${tp_c}-${2p18}] ~-${2p18} ~ ~
+	/scoreboard players add ${tp_c}-${2p18}] C $2p18
+	/tp ${tp_c}-${2p17}] ~-${2p17} ~ ~
+	/scoreboard players add ${tp_c}-${2p17}] C $2p17
+	/tp ${tp_c}-${2p16}] ~-${2p16} ~ ~
+	/scoreboard players add ${tp_c}-${2p16}] C $2p16
+	/tp ${tp_c}-${2p15}] ~-${2p15} ~ ~
+	/scoreboard players add ${tp_c}-${2p15}] C $2p15
+	/tp ${tp_c}-${2p14}] ~-${2p14} ~ ~
+	/scoreboard players add ${tp_c}-${2p14}] C $2p14
+	/tp ${tp_c}-${2p13}] ~-${2p13} ~ ~
+	/scoreboard players add ${tp_c}-${2p13}] C $2p13
+	/tp ${tp_c}-${2p12}] ~-${2p12} ~ ~
+	/scoreboard players add ${tp_c}-${2p12}] C $2p12
+	/tp ${tp_c}-${2p11}] ~-${2p11} ~ ~
+	/scoreboard players add ${tp_c}-${2p11}] C $2p11
+	/tp ${tp_c}-${2p10}] ~-${2p10} ~ ~
+	/scoreboard players add ${tp_c}-${2p10}] C $2p10
+	/tp ${tp_c}-${2p9}] ~-${2p9} ~ ~
+	/scoreboard players add ${tp_c}-${2p9}] C $2p9
+	/tp ${tp_c}-${2p8}] ~-${2p8} ~ ~
+	/scoreboard players add ${tp_c}-${2p8}] C $2p8
+	/tp ${tp_c}-${2p7}] ~-${2p7} ~ ~
+	/scoreboard players add ${tp_c}-${2p7}] C $2p7
+	/tp ${tp_c}-${2p6}] ~-${2p6} ~ ~
+	/scoreboard players add ${tp_c}-${2p6}] C $2p6
+	/tp ${tp_c}-${2p5}] ~-${2p5} ~ ~
+	/scoreboard players add ${tp_c}-${2p5}] C $2p5
+	/tp ${tp_c}-${2p4}] ~-${2p4} ~ ~
+	/scoreboard players add ${tp_c}-${2p4}] C $2p4
+	/tp ${tp_c}-${2p3}] ~-${2p3} ~ ~
+	/scoreboard players add ${tp_c}-${2p3}] C $2p3
+	/tp ${tp_c}-${2p2}] ~-${2p2} ~ ~
+	/scoreboard players add ${tp_c}-${2p2}] C $2p2
+	/tp ${tp_c}-${2p1}] ~-${2p1} ~ ~
+	/scoreboard players add ${tp_c}-${2p1}] C $2p1
+	/tp ${tp_c}-${2p0}] ~-${2p0} ~ ~
+	/scoreboard players add ${tp_c}-${2p0}] C $2p0
+
+
+#teleportationY
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	$tp_d = @a[score_start_min=1,tag=!invalid,score_D_min=
+
+	/tp ${tp_d}${2p7}] ~ ~${2p7} ~
+	/scoreboard players remove ${tp_d}${2p7}] D $2p7
+	/tp ${tp_d}${2p6}] ~ ~${2p6} ~
+	/scoreboard players remove ${tp_d}${2p6}] D $2p6
+	/tp ${tp_d}${2p5}] ~ ~${2p5} ~
+	/scoreboard players remove ${tp_d}${2p5}] D $2p5
+	/tp ${tp_d}${2p4}] ~ ~${2p4} ~
+	/scoreboard players remove ${tp_d}${2p4}] D $2p4
+	/tp ${tp_d}${2p3}] ~ ~${2p3} ~
+	/scoreboard players remove ${tp_d}${2p3}] D $2p3
+	/tp ${tp_d}${2p2}] ~ ~${2p2} ~
+	/scoreboard players remove ${tp_d}${2p2}] D $2p2
+	/tp ${tp_d}${2p1}] ~ ~${2p1} ~
+	/scoreboard players remove ${tp_d}${2p1}] D $2p1
+	/tp ${tp_d}${2p0}] ~ ~${2p0} ~
+	/scoreboard players remove ${tp_d}${2p0}] D $2p0
+
+

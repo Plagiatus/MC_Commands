@@ -1,0 +1,150 @@
+#teleportationZ+
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	$2p24 = 16777216
+	$2p23 = 8388608
+	$2p22 = 4194304
+	$2p21 = 2097152
+	$2p20 = 1048576
+	$2p19 = 524288
+	$2p18 = 262144
+	$2p17 = 131072
+	$2p16 = 65536
+	$2p15 = 32768
+	$2p14 = 16384
+	$2p13 = 8192
+	$2p12 = 4096
+	$2p11 = 2048
+	$2p10 = 1024
+	$2p9 = 512
+	$2p8 = 256
+	$2p7 = 128
+	$2p6 = 64
+	$2p5 = 32
+	$2p4 = 16
+	$2p3 = 8
+	$2p2 = 4
+	$2p1 = 2
+	$2p0 = 1
+
+	$tp_a = @a[score_start_min=1,tag=!invalid,score_A_min=
+
+
+	/tp ${tp_a}${2p24}] ~ ~ ~${2p24}
+	/scoreboard players remove ${tp_a}${2p24}] A $2p24
+	/tp ${tp_a}${2p23}] ~ ~ ~${2p23}
+	/scoreboard players remove ${tp_a}${2p23}] A $2p23
+	/tp ${tp_a}${2p22}] ~ ~ ~${2p22}
+	/scoreboard players remove ${tp_a}${2p22}] A $2p22
+	/tp ${tp_a}${2p21}] ~ ~ ~${2p21}
+	/scoreboard players remove ${tp_a}${2p21}] A $2p21
+	/tp ${tp_a}${2p20}] ~ ~ ~${2p20}
+	/scoreboard players remove ${tp_a}${2p20}] A $2p20
+	/tp ${tp_a}${2p19}] ~ ~ ~${2p19}
+	/scoreboard players remove ${tp_a}${2p19}] A $2p19
+	/tp ${tp_a}${2p18}] ~ ~ ~${2p18}
+	/scoreboard players remove ${tp_a}${2p18}] A $2p18
+	/tp ${tp_a}${2p17}] ~ ~ ~${2p17}
+	/scoreboard players remove ${tp_a}${2p17}] A $2p17
+	/tp ${tp_a}${2p16}] ~ ~ ~${2p16}
+	/scoreboard players remove ${tp_a}${2p16}] A $2p16
+	/tp ${tp_a}${2p15}] ~ ~ ~${2p15}
+	/scoreboard players remove ${tp_a}${2p15}] A $2p15
+	/tp ${tp_a}${2p14}] ~ ~ ~${2p14}
+	/scoreboard players remove ${tp_a}${2p14}] A $2p14
+	/tp ${tp_a}${2p13}] ~ ~ ~${2p13}
+	/scoreboard players remove ${tp_a}${2p13}] A $2p13
+	/tp ${tp_a}${2p12}] ~ ~ ~${2p12}
+	/scoreboard players remove ${tp_a}${2p12}] A $2p12
+	/tp ${tp_a}${2p11}] ~ ~ ~${2p11}
+	/scoreboard players remove ${tp_a}${2p11}] A $2p11
+	/tp ${tp_a}${2p10}] ~ ~ ~${2p10}
+	/scoreboard players remove ${tp_a}${2p10}] A $2p10
+	/tp ${tp_a}${2p9}] ~ ~ ~${2p9}
+	/scoreboard players remove ${tp_a}${2p9}] A $2p9
+	/tp ${tp_a}${2p8}] ~ ~ ~${2p8}
+	/scoreboard players remove ${tp_a}${2p8}] A $2p8
+	/tp ${tp_a}${2p7}] ~ ~ ~${2p7}
+	/scoreboard players remove ${tp_a}${2p7}] A $2p7
+	/tp ${tp_a}${2p6}] ~ ~ ~${2p6}
+	/scoreboard players remove ${tp_a}${2p6}] A $2p6
+	/tp ${tp_a}${2p5}] ~ ~ ~${2p5}
+	/scoreboard players remove ${tp_a}${2p5}] A $2p5
+	/tp ${tp_a}${2p4}] ~ ~ ~${2p4}
+	/scoreboard players remove ${tp_a}${2p4}] A $2p4
+	/tp ${tp_a}${2p3}] ~ ~ ~${2p3}
+	/scoreboard players remove ${tp_a}${2p3}] A $2p3
+	/tp ${tp_a}${2p2}] ~ ~ ~${2p2}
+	/scoreboard players remove ${tp_a}${2p2}] A $2p2
+	/tp ${tp_a}${2p1}] ~ ~ ~${2p1}
+	/scoreboard players remove ${tp_a}${2p1}] A $2p1
+	/tp ${tp_a}${2p0}] ~ ~ ~${2p0}
+	/scoreboard players remove ${tp_a}${2p0}] A $2p0
+
+#teleportationZ-
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+	$tp_a = @a[score_start_min=1,tag=!invalid,score_A=
+
+
+	/tp ${tp_a}-${2p24}] ~ ~ ~-${2p24}
+	/scoreboard players add ${tp_a}-${2p24}] A $2p24
+	/tp ${tp_a}-${2p23}] ~ ~ ~-${2p23}
+	/scoreboard players add ${tp_a}-${2p23}] A $2p23
+	/tp ${tp_a}-${2p22}] ~ ~ ~-${2p22}
+	/scoreboard players add ${tp_a}-${2p22}] A $2p22
+	/tp ${tp_a}-${2p21}] ~ ~ ~-${2p21}
+	/scoreboard players add ${tp_a}-${2p21}] A $2p21
+	/tp ${tp_a}-${2p20}] ~ ~ ~-${2p20}
+	/scoreboard players add ${tp_a}-${2p20}] A $2p20
+	/tp ${tp_a}-${2p19}] ~ ~ ~-${2p19}
+	/scoreboard players add ${tp_a}-${2p19}] A $2p19
+	/tp ${tp_a}-${2p18}] ~ ~ ~-${2p18}
+	/scoreboard players add ${tp_a}-${2p18}] A $2p18
+	/tp ${tp_a}-${2p17}] ~ ~ ~-${2p17}
+	/scoreboard players add ${tp_a}-${2p17}] A $2p17
+	/tp ${tp_a}-${2p16}] ~ ~ ~-${2p16}
+	/scoreboard players add ${tp_a}-${2p16}] A $2p16
+	/tp ${tp_a}-${2p15}] ~ ~ ~-${2p15}
+	/scoreboard players add ${tp_a}-${2p15}] A $2p15
+	/tp ${tp_a}-${2p14}] ~ ~ ~-${2p14}
+	/scoreboard players add ${tp_a}-${2p14}] A $2p14
+	/tp ${tp_a}-${2p13}] ~ ~ ~-${2p13}
+	/scoreboard players add ${tp_a}-${2p13}] A $2p13
+	/tp ${tp_a}-${2p12}] ~ ~ ~-${2p12}
+	/scoreboard players add ${tp_a}-${2p12}] A $2p12
+	/tp ${tp_a}-${2p11}] ~ ~ ~-${2p11}
+	/scoreboard players add ${tp_a}-${2p11}] A $2p11
+	/tp ${tp_a}-${2p10}] ~ ~ ~-${2p10}
+	/scoreboard players add ${tp_a}-${2p10}] A $2p10
+	/tp ${tp_a}-${2p9}] ~ ~ ~-${2p9}
+	/scoreboard players add ${tp_a}-${2p9}] A $2p9
+	/tp ${tp_a}-${2p8}] ~ ~ ~-${2p8}
+	/scoreboard players add ${tp_a}-${2p8}] A $2p8
+	/tp ${tp_a}-${2p7}] ~ ~ ~-${2p7}
+	/scoreboard players add ${tp_a}-${2p7}] A $2p7
+	/tp ${tp_a}-${2p6}] ~ ~ ~-${2p6}
+	/scoreboard players add ${tp_a}-${2p6}] A $2p6
+	/tp ${tp_a}-${2p5}] ~ ~ ~-${2p5}
+	/scoreboard players add ${tp_a}-${2p5}] A $2p5
+	/tp ${tp_a}-${2p4}] ~ ~ ~-${2p4}
+	/scoreboard players add ${tp_a}-${2p4}] A $2p4
+	/tp ${tp_a}-${2p3}] ~ ~ ~-${2p3}
+	/scoreboard players add ${tp_a}-${2p3}] A $2p3
+	/tp ${tp_a}-${2p2}] ~ ~ ~-${2p2}
+	/scoreboard players add ${tp_a}-${2p2}] A $2p2
+	/tp ${tp_a}-${2p1}] ~ ~ ~-${2p1}
+	/scoreboard players add ${tp_a}-${2p1}] A $2p1
+	/tp ${tp_a}-${2p0}] ~ ~ ~-${2p0}
+	/scoreboard players add ${tp_a}-${2p0}] A $2p0
+
+	
+	/scoreboard players set @a[score_start_min=1] B 0
+	/scoreboard players set @a[score_start_min=1] E 0	
+	/scoreboard players set @a[score_start_min=1] start 0

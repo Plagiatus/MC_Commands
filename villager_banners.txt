@@ -1,0 +1,161 @@
+##INIT
+/*INIT:
+#/scoreboard objectives add plag_blc_kill achievement.killEnemy
+/scoreboard objectives add plag_blc_food dummy
+#/scoreboard objectives add plag_blc_bed dummy
+/scoreboard objectives add plag_blc_dmg stat.damageDealt
+/scoreboard objectives add plag_blc_weapon dummy
+/scoreboard objectives add plag_blc_armor dummy
+/scoreboard objectives add plag_blc_trade stat.tradedWithVillager
+/scoreboard objectives add plag_blc_blaze dummy
+/scoreboard objectives add plag_blc_powder dummy
+/scoreboard teams add plag_blc_peace
+/scoreboard teams option plag_blc_peace friendlyfire false
+/summon AreaEffectCloud ~ ~1 ~ {CustomName:"plag_blc_scores",Particle:mobSpell,Duration:2147483643,Age:0}
+#/difficulty normal
+
+
+#set to 0
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_armor 0
+#/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_bed 0
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_blaze 0
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_dmg 0
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_food 0
+#/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_kill 0
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_powder 0
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_trade 0
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_weapon 0
+
+#welcome message
+/tellraw @a ["",{"text":"You successfully installed the \"Better Learning Curve\" Module.\n","italic":true},{"text":"Module made by ","italic":true},{"text":"Plagiatus","color":"red","bold":true,"clickEvent":{"action":"open_url","value":"http://plagiatus.net"},"hoverEvent":{"action":"show_text","value":{"text":"","extra":[{"text":"plagiatus.net"}]}},"italic":false}]
+*/
+
+#### set scores
+
+## Food
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:apple"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:carrot"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:potato"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:baked_potato"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:melon"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:mushroom_stew"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:wheat"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:fish"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:cooked_fish"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:chicken"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:cooked_chicken"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:pumpkin"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:mutton"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:beetroot"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:beef"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:cooked_beef"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:porkchop"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:cooked_porkchop"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:rabbit"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:cooked_rabbit"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:golden_apple"}]}
+/scoreboard players set @a plag_blc_food 1 {Inventory:[{id:"minecraft:rotten_flesh"}]}
+
+##Bed
+#/scoreboard players set @a plag_blc_bed 1 {Inventory:[{id:"minecraft:bed"}]}
+
+##Weapon
+/scoreboard players set @a plag_blc_weapon 1 {Inventory:[{id:"minecraft:wooden_sword"}]}
+/scoreboard players set @a plag_blc_weapon 1 {Inventory:[{id:"minecraft:stone_sword"}]}
+/scoreboard players set @a plag_blc_weapon 1 {Inventory:[{id:"minecraft:iron_sword"}]}
+/scoreboard players set @a plag_blc_weapon 1 {Inventory:[{id:"minecraft:golden_sword"}]}
+/scoreboard players set @a plag_blc_weapon 1 {Inventory:[{id:"minecraft:diamond_sword"}]}
+/scoreboard players set @a plag_blc_weapon 1 {Inventory:[{id:"minecraft:bow"}]}
+
+##Armor
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:leather_helmet"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:leather_chestplate"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:leather_leggins"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:leather_boots"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:iron_helmet"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:iron_chestplate"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:iron_leggins"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:iron_boots"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:chainmail_helmet"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:chainmail_chestplate"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:chainmail_leggins"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:chainmail_boots"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:golden_helmet"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:golden_chestplate"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:golden_leggins"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:golden_boots"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:diamond_helmet"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:diamond_chestplate"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:diamond_leggins"}]}
+/scoreboard players set @a plag_blc_armor 1 {Inventory:[{id:"minecraft:diamond_boots"}]}
+
+##Blaze
+/scoreboard players set @a plag_blc_blaze 1 {Inventory:[{id:"minecraft:blaze_rod"}]}
+/scoreboard players set @a plag_blc_blaze 1 {Inventory:[{id:"minecraft:potion"}]}
+
+##powder
+/scoreboard players set @a plag_blc_powder 1 {Inventory:[{id:"minecraft:gunpowder"}]}
+
+
+#### combine
+
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_armor > @a plag_blc_armor
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_bed > @a plag_blc_bed
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_blaze > @a plag_blc_blaze
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_dmg_min=0,score_plag_blc_dmg=0] plag_blc_dmg > @a plag_blc_dmg
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_food > @a plag_blc_food
+#/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_kill > @a plag_blc_kill
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_powder > @a plag_blc_powder
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_trade > @a plag_blc_trade
+/scoreboard players operation @e[type=AreaEffectCloud,name=plag_blc_scores] plag_blc_weapon > @a plag_blc_weapon
+
+
+#### actually do something
+#hunger
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_food=0] ~ ~ ~ /effect @a minecraft:saturation 1 0
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_food_min=1,score_plag_blc_food=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_food_min=1]","color":"red","italic":true},{"text":" discovered food. From now on you'll need to eat to survive.","color":"red","italic":true}]
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_food_min=1,score_plag_blc_food=1] plag_blc_food 2
+
+#bed
+#/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_bed_min=1,score_plag_blc_bed=1] ~ ~ ~ /difficulty normal
+#/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_bed_min=1,score_plag_blc_bed=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_bed_min=1]","color":"red","italic":true},{"text":" crafted a bed. From now on mobs will spawn (difficulty set to normal)","color":"red","italic":true}]
+#/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_bed_min=1,score_plag_blc_bed=1] plag_blc_bed 2
+
+#dmg
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_dmg_min=0,score_plag_blc_dmg=0] ~ ~ ~ /scoreboard teams join plag_blc_peace @e[team=]
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_dmg_min=1] ~ ~ ~ /scoreboard teams leave @e[team=plag_blc_peace]
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_dmg_min=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_dmg_min=1]","color":"red","italic":true},{"text":" has angered the fauna. From now on mobs will attack.","color":"red","italic":true}]
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_dmg_min=1] plag_blc_dmg -1
+
+#armor
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_armor=0] ~ ~ ~ /entitydata @e[type=Zombie,tag=!noArmor] {ArmorItems:[]}
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_armor=0] ~ ~ ~ /entitydata @e[type=Skeleton,tag=!noArmor] {ArmorItems:[]}
+/scoreboard players tag @e[type=Zombie] add noArmor
+/scoreboard players tag @e[type=Skeleton] add noArmor
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_armor_min=1,score_plag_blc_armor=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_armor_min=1]","color":"red","italic":true},{"text":" obtained armor. From now on mobs will be able to obtain armor as well.","color":"red","italic":true}]
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_armor_min=1,score_plag_blc_armor=1] plag_blc_armor 2
+
+#weapons
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_weapon=0] ~ ~ ~ /entitydata @e[type=Zombie,tag=!noWeapon] {HandItems:[]}
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_weapon=0] ~ ~ ~ /entitydata @e[type=Skeleton,tag=!noWeapon] {HandItems:[]}
+/scoreboard players tag @e[type=Zombie] add noWeapon
+/scoreboard players tag @e[type=Skeleton] add noWeapon
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_weapon_min=1,score_plag_blc_weapon=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_weapon_min=1]","color":"red","italic":true},{"text":" obtained a weapon. From now on mobs will be able to carry weapons as well.","color":"red","italic":true}]
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_weapon_min=1,score_plag_blc_weapon=1] plag_blc_weapon 2
+
+#trade
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_trade=0] ~ ~ ~ /difficulty normal
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_trade_min=1] ~ ~ ~ /difficulty hard
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_trade_min=1,score_plag_blc_trade=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_trade_min=1]","color":"red","italic":true},{"text":" traded with a villager. From now on zombies will break doors (difficulty set to hard).","color":"red","italic":true}]
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_trade_min=1,score_plag_blc_trade=1] plag_blc_trade 2
+
+#witch
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_blaze_min=0,score_plag_blc_blaze=0] ~ ~ ~ /tp @e[type=Witch] ~ ~-500 ~
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_blaze_min=1,score_plag_blc_blaze=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_blaze_min=1]","color":"red","italic":true},{"text":" obtained a blazerod or potions. Witches will now spawn.","color":"red","italic":true}]
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_blaze_min=1,score_plag_blc_blaze=1] plag_blc_blaze 2
+
+#creeper explosions
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_powder_min=0,score_plag_blc_powder=0] ~ ~ ~ /entitydata @e[type=Item] {Invulnerable:1}
+/execute @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_powder_min=1,score_plag_blc_powder=1] ~ ~ ~ /tellraw @a ["",{"selector":"@p[score_plag_blc_powder_min=1]","color":"red","italic":true},{"text":" killed a creeper/ghast. Items are no longer resistent against explosions.","color":"red","italic":true}]
+/scoreboard players set @e[type=AreaEffectCloud,name=plag_blc_scores,score_plag_blc_powder_min=1,score_plag_blc_powder=1] plag_blc_powder 2
+

@@ -1,0 +1,13 @@
+#1
+>{"type":"impulse", "conditional":false, "auto":true}
+	/say 1
+#2
+	/say 2
+#3
+	/say 3
+#4
+	/say 4
+#5
+	/say 5
+#6	
+	/say 6

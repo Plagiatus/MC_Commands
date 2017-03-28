@@ -1,0 +1,17 @@
+#say hi
+>{"type":"chain", "conditional": true}
+	/say hi
+	>{"executeAs": "@p"}
+	/say hi2
+
+#
+	/say hi
+# test2
+#
+#
+#
+#
+
+# test 4
+	/say test
+	/execute @a ~ ~ ~ /say hi

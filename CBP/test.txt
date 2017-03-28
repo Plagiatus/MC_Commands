@@ -1,0 +1,33 @@
+//#-p stained_hardened_clay 14 -print
+DEFINE deactivate fill |0| stained_hardened_clay 14 redstone_block
+DEFINE activate fill |0| redstone_block stained_hardened_clay 14
+
+//this function will trigger a group
+FUNC tick
+    activate(|0|)
+    deactivate(|0|)
+END
+
+//demo of USE
+FUNC random
+    USE @e[test>=4,life>0<20]
+         say yep!
+         test=4
+END
+
+//here the actual program starts
+:mainblock PULSE 5 5 0
+tick(mainblock)
+say Let's count!
+LOOP 1 10 + 3
+    IF |0|>1
+        say |0| commands...
+    END
+    IF |0|=1
+        say |0| command...
+    END
+END
+say finished!
+random
+say for real now...
+@a[team=Red] test%10

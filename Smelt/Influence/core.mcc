@@ -11,6 +11,7 @@
 	/scoreboard players tag @a[tag=currentPlayer] remove currentPlayer
 	/scoreboard players reset * playernr
 	/gamemode 2 @a
+	/clear @a
 
 	//off
 	/execute @e[type=area_effect_cloud,name=items_first_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}		//turn off first phase item handling

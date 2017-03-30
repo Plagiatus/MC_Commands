@@ -49,8 +49,18 @@
 >{"type":"chain", "conditional":false, "auto":true}
 	//generate new map & reset the whole board
 	
+	/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=4] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_game_checked] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @e[type=armor_stand,name=stats,score_players=1] ~ ~ ~ /tellraw @a ["",{"text":"ERROR: Not enough players.","color":"red"}]
+	/execute @e[type=armor_stand,name=stats,score_players=1] ~ ~ ~ /setblock 21 83 -18 minecraft:wall_sign facing=south replace {Text1:"{\"text\":\"START\",\"bold\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=area_effect_cloud,name=start_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Make sure only\"}",Text3:"{\"text\":\"one player per\"}",Text4:"{\"text\":\"team.\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/setblock ~ ~ ~ air\"}}"}
+
+
+#start_game_checked
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
 	/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=2] ~ ~ ~ /setblock -2 57 34 minecraft:redstone_block
-	/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block 			
+	/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -2 30 -6 minecraft:redstone_block 			
 	/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block 			
 
 	/clear @a

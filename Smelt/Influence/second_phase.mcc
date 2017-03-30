@@ -27,6 +27,9 @@
 	/execute @e[type=area_effect_cloud,tag=cellMarker,score_team_min=3,score_team=3] ~ ~ ~ /scoreboard players add @p[tag=currentPlayer,team=green] powerup 1
 	/execute @e[type=area_effect_cloud,tag=cellMarker,score_team_min=4,score_team=4] ~ ~ ~ /scoreboard players add @p[tag=currentPlayer,team=yellow] powerup 1
 
+	//tp golden marker away
+	/tp @e[type=armor_stand,tag=origin_visual] @e[type=armor_stand,name=stats]
+
 #powerup
 >{"type":"repeating", "conditional":false, "auto":false}
 	/searge

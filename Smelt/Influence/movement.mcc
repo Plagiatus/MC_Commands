@@ -48,7 +48,7 @@ $target = @e[type=area_effect_cloud,tag=target]
 	//detect target
 	////////////////
 	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet * /scoreboard players tag @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] add target	//add target tag to the new one with carpet on top
-	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~ ~ carpet * /scoreboard players tag @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] add target	//add target tag to the new one with carpet on top
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~ ~ carpet * /scoreboard players tag @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] add target		//add target tag to the new one with carpet on top
 	/execute @e[type=area_effect_cloud,tag=target] ~ ~ ~ /setblock ~ ~1 ~ air
 
 	//reset playertimer
@@ -121,6 +121,8 @@ $target = @e[type=area_effect_cloud,tag=target]
 
 	//update visuals & update blocks around
 	/execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+	////////////////////////THIS ONE HERE MAY CAUSE THE BUG!!!!!!!!!! ^^^^
 
 
 	//end phase 

@@ -30,7 +30,7 @@
 	/scoreboard players tag @a[tag=nextPlayer] add currentPlayer
 	/scoreboard players tag @a[tag=nextPlayer] remove nextPlayer
 	/title @a actionbar ["",{"selector":"@p[tag=currentPlayer]"},{"text":"'s turn."}]
-	/execute @p[tag=currentPlayer] ~ ~ ~ /playsound minecraft:entity.player.levelup master @p[tag=currentPlayer] 
+	/execute @p[tag=currentPlayer] ~ ~ ~ /playsound minecraft:entity.experience_orb.pickup master @p[tag=currentPlayer] 
 	
 
 	//activate commands for next round

@@ -35,6 +35,7 @@
 	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
 	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
 
+
 	/tp @a 16 96 -11
 
 	//OLD LOBBY START SIGN
@@ -73,11 +74,29 @@
 
 	/scoreboard players reset @a[score_playernr=0] playernr
 
-	/scoreboard players tag @p[score_playernr=1,score_playernr_min=1] add currentPlayer
 
 	/scoreboard players set @a timer 0
 
-	//on
+
+
+
+	//OLD LOBBY START SIGN
+	//setblock 21 83 -18 minecraft:air
+
+#start_game_part2
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+
+	/scoreboard players tag @p[score_playernr=1,score_playernr_min=1] add currentPlayer
+
+	/title @a actionbar ["",{"selector":"@p[tag=currentPlayer]"},{"text":"'s turn."}]
+
+	/execute @p[tag=currentPlayer] ~ ~ ~ /playsound minecraft:entity.experience_orb.pickup master @p[tag=currentPlayer]
+
+		//on
 	/execute @e[type=area_effect_cloud,name=items_first_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}		//turn on first phase item handling
 	/execute @e[type=area_effect_cloud,name=movement] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}				//turn on movement handling
 	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}			//turn on origin creator 1
@@ -85,10 +104,6 @@
 
 	/execute @e[type=area_effect_cloud,name=things_during_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	//turn on effects
 	/execute @e[type=area_effect_cloud,name=remove_carpet] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}			//turn on carpet removal
-
-
-	//OLD LOBBY START SIGN
-	//setblock 21 83 -18 minecraft:air
 
 
 #effects

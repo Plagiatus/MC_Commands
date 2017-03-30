@@ -1,0 +1,536 @@
+>{"type":"repeating", "conditional":false, "auto":true}
+/scoreboard players enable @a exp_trigger
+>{"type":"chain", "conditional":false, "auto":true}
+
+/scoreboard players tag @a[tag=hasBook] remove hasBook
+/scoreboard players tag @a[r=750] add hasBook {Inventory:[{id:"minecraft:written_book",tag:{title:"[Map Name]",author:"Team Vaeron"}}]}
+
+/tp @a[score_exp_trigger=1,score_exp_trigger_min=1] 77 25 99
+/tp @a[score_exp_trigger=2,score_exp_trigger_min=2] 449 19 210 -157 1
+/tp @a[score_exp_trigger=3,score_exp_trigger_min=3] -65 19 438 150 -6
+/tp @a[score_exp_trigger=4,score_exp_trigger_min=4] 15 35 -40 90 -35
+/tp @a[score_exp_trigger=5,score_exp_trigger_min=5] 165 247 -16 ~ 16
+/tp @a[score_exp_trigger=6,score_exp_trigger_min=6] -290 19 276 -132 -8
+/tp @a[score_exp_trigger=7,score_exp_trigger_min=7] -50 19 26 -48 -2
+/tp @a[score_exp_trigger=8,score_exp_trigger_min=8] 
+
+/scoreboard players set @a[score_exp_trigger_min=1] exp_trigger 0
+
+/scoreboard players add @e[type=Item] exp_trigger 1 {Item:{id:"minecraft:written_book",tag:{title:"[Map Name]",author:"Team Vaeron"}}}
+/kill @e[type=Item,score_exp_trigger_min=10]
+
+/give @a[tag=!hasBook] minecraft:written_book 1 0 
+{
+	title:"[Map Name]",
+	author:"Team Vaeron",
+	generation:0,
+	pages:
+	[
+		"{
+			text:\"     [Map Name]\",
+			color:black,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"\n            by\n     \",
+					color:black,
+					bold:false,
+					italic:false
+				},
+				{
+					text:\"Team Vaeron\n\",
+					color:dark_purple,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Youtube Channel\"
+					},
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://www.youtube.com/channel/UCSAxOXkREAxqiABm79KnllQ\"
+					}
+				},
+				{
+					text:\"\nfind the cinematic here\",
+					color:dark_gray,
+					bold:false,
+					italic:true,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"click here for cinematic\"
+					},
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://www.youtube.com/channel/UCSAxOXkREAxqiABm79KnllQ\"
+					}
+				},
+				{
+					text:\"\n\n\n\n      Contents\n\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"         \"
+				},
+				{
+					text:\"Lore\n\",
+					color:dark_red,
+					bold:false,
+					italic:true,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"-> page 2\"
+					},
+					clickEvent:
+					{
+						action:'change_page',
+						value:\"2\"
+					}
+				},
+				{
+					text:\"       \"
+				},
+				{
+					text:\"Waypoints\n\",
+					color:dark_red,
+					bold:false,
+					italic:true,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"-> page 6\"
+					},
+					clickEvent:
+					{
+						action:'change_page',
+						value:\"6\"
+					}
+				},
+				{
+					text:\"        \"
+				},
+				{
+					text:\"Credits\",
+					color:dark_red,
+					bold:false,
+					italic:true,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"-> page 10\"
+					},
+					clickEvent:
+					{
+						action:'change_page',value:\"10\"
+					}
+				}
+			]
+		}",
+		
+
+
+		"{
+			text:\"        Lore\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Under the fallen regime of [Name emperor fag] live the crowded people of [Name city]. With revolts going around, the government struggles to maintain its cities. Causing the living conditions to corrode, the people’s wallets are empty.\",
+					color:black,
+					bold:false,
+					italic:false
+				}
+			]
+		}",		
+
+		"{
+			text:\"        Lore\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"There is not enough food for all, most are malnourished.. Man has gone back to its primal habits, cohesion is rare and individualism is common. Those who fight stick together, the rest scatter looking for resources.\",
+					color:black,
+					bold:false,
+					italic:false
+				}
+			]
+		}",		
+
+		"{
+			text:\"        Lore\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Even though the chance of overthrowing the emperor is slim, the citizens will fight down to the last man. Though the circumstances are dire, man won’t give up. Hope will remain and the people will rise. For in the\",
+					color:black,
+					bold:false,
+					italic:false
+				}
+			]
+		}",
+
+		"{
+			text:\"        Lore\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"darkest skies shine the brightest stars.\",
+					color:black,
+					bold:false,
+					italic:false
+				}
+			]
+		}",
+
+
+
+
+
+		"{
+			text:\"      Waypoints\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Center\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 1\"
+					}
+				},
+				{
+					text:\"\nThe Central Place of [Name city] with the statue of the emperor. It's the heart of the city.\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"Military Camp\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 2\"
+					}
+				},
+				{
+					text:\"\nIt is here that the emperor keeps his troups stationed.\n\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"               \"
+				},
+				{
+					text:\"go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}",		"{
+			text:\"      Waypoints\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Plane Crash\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 3\"
+					}
+				},
+				{
+					text:\"\nSomething horrible has happened here. The plane fell like a rock and broke in half!\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"Inner Courtyard\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 4\"
+					}
+				},
+				{
+					text:\"\nA place to relax and meet people. It's always crowded in here.\n\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"               \"
+				},
+				{
+					text:\"go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}",		
+
+		"{
+			text:\"      Waypoints\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Main Tower\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 5\"
+					}
+				},
+				{
+					text:\"\nThe Tower is the control center of the Emperor. From here he tries to control his citizens.\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"Slums\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 6\"
+					}
+				},
+				{
+					text:\"\nThe Slums are not a place of happiness. Only the poorest of the poor live here.\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"               \"
+				},
+				{
+					text:\"go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}",
+
+		"{
+			text:\"      Waypoints\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Traffic Jam\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 7\"
+					}
+				},
+				{
+					text:\"\nRevolts caused the main square to be shut down by the military.\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"Point 2\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 8\"
+					}
+				},
+				{
+					text:\"\nBla bla bla\n\n\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"               \"
+				},
+				{
+					text:\"go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}",
+		
+
+
+
+
+		"{
+			text:\"       Credits\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"\nBuilders:\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"Builder 1\nBuilder 2\n\",
+					color:black,
+					bold:false,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"insert clickable links here\"
+					}
+				},
+				{
+					text:\"\n\nCommands:\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"Plagiatus\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/realplagiatus\"
+					}
+				},
+				{
+					text:\"               \"
+				},
+				{
+					text:\"go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}"
+	]
+}

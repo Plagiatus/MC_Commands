@@ -1,0 +1,221 @@
+/give @a[tag=!firstJoin] minecraft:written_book 1 0 
+{
+	title:"[Map Name]",
+	author:"Team Vaeron",
+	generation:0,
+	pages:
+	[
+		"{
+			text:\"    [Map Name]\",
+			color:black,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"\n           by\n    \",
+					color:black,
+					bold:false,
+					italic:false
+				},
+				{
+					text:\"Team Vaeron\",
+					color:dark_purple,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Youtube Channel\"
+					},
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://www.youtube.com/channel/UCSAxOXkREAxqiABm79KnllQ\"
+					}
+				},
+				{
+					text:\"\n\n\n\nContents\n\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"• waypoints\n\",
+					color:dark_red,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',
+						value:\"2\"
+					}
+				},
+				{
+					text:\"• cinematics\n\",
+					color:dark_red,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',
+						value:\"3\"
+					}
+				},
+				{
+					text:\"• credits\",
+					color:dark_red,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"4\"
+					}
+				}
+			]
+		}",
+		
+
+		"{
+			text:\"      Waypoints\n================\n\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Point 1\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 1\"
+					}
+				},
+				{
+					text:\"\nMore Information about that Point. Something short and sweet.\n\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"Point 2\",
+					color:black,
+					bold:true,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"Click to teleport\"
+					},
+					clickEvent:
+					{
+						action:'run_command',
+						value:\"/trigger exp_trigger set 2\"
+					}
+				},
+				{
+					text:\"\nBla bla bla\n\n\n\",
+					color:gray,
+					bold:false,
+					italic:true
+				},
+				{
+					text:\"                  go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}",
+
+
+		"{
+			text:\"     Cinematics\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"                  go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',
+						value:\"1\"
+					}
+				}
+			]
+		}",
+		
+
+		"{
+			text:\"       Credits\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"\nBuilders:\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"Builder 1\nBuilder 2\n\",
+					color:black,
+					bold:false,
+					italic:false,
+					hoverEvent:
+					{
+						action:'show_text',
+						value:\"insert clickable links here\"
+					}
+				},
+				{
+					text:\"\n\nCommands:\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"Plagiatus\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/realplagiatus\"
+					}
+				},
+				{
+					text:\"\n\n\n\n                  go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',
+						value:\"1\"
+					}
+				}
+			]
+		}"
+	]
+}

@@ -7,11 +7,10 @@
 
 	/execute @e[name=stats,type=armor_stand,score_players=1,score_players_min=1] ~ ~ ~ /tellraw @a ["",{"selector":"@a[team=!]","color":"gold"},{"text":" overpowered all of their foes and won the game!","color":"gold"}]
 
-	/scoreboard teams leave @a
 	/scoreboard players tag @a[tag=currentPlayer] remove currentPlayer
 	/scoreboard players reset * playernr
 	/gamemode 2 @a
-	/clear @a
+	/clear @a[team=!]
 
 	//off
 	/execute @e[type=area_effect_cloud,name=items_first_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}		//turn off first phase item handling
@@ -22,25 +21,35 @@
 	/execute @e[type=area_effect_cloud,name=powerup] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn off second phase powerup
 
 	/execute @e[type=area_effect_cloud,name=things_during_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off effects
+	/execute @e[type=area_effect_cloud,name=things_outside_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	//turn on outside
 	/effect @a clear
 
 
 	/execute @e[type=area_effect_cloud,name=remove_carpet] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}			//turn off carpet removal
 
-	/execute @e[type=area_effect_cloud,name=someone_dead_game_over] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off game-over
+	/execute @e[type=area_effect_cloud,name=game_over] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn off game-over
 
-	/execute @e[type=area_effect_cloud,name=timer] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off timer
+	/execute @e[type=area_effect_cloud,name=leaver-protection-midgame] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off midgame-leaver-protection
+
+	/execute @e[type=area_effect_cloud,name=timer] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}					//turn off timer
+
+	/execute @e[type=area_effect_cloud,name=teamselection] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}			//turn on temselection
 
 	//remove origin and target, if they still exist
 	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
 	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
 
+	/tp @a[team=!] 21 97 19
 
-	/tp @a 16 96 -11
+	/scoreboard teams leave @a
 
-	//OLD LOBBY START SIGN
-	/setblock 21 83 -18 minecraft:wall_sign facing=south replace {Text1:"{\"text\":\"START\",\"bold\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=area_effect_cloud,name=start_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Make sure only\"}",Text3:"{\"text\":\"one player per\"}",Text4:"{\"text\":\"team.\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/setblock ~ ~ ~ air\"}}"}
+	//startsign
+	/blockdata 21 101 1 {Text1:"{\"text\":\"\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,name=start_game] ~1 ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"START\",\"bold\":true,\"color\":\"dark_red\"}",Text3:"{\"text\":\"GAME\",\"bold\":true,\"color\":\"dark_red\"}",Text4:"{\"text\":\"\"}"}
 
+	//reenable options
+	/execute @e[type=area_effect_cloud,tag=afktimer_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=startingpower_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=mapsize_auto] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
 
 
 #start_game
@@ -51,8 +60,11 @@
 	//generate new map & reset the whole board
 	
 	/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=4] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_game_checked] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
-	/execute @e[type=armor_stand,name=stats,score_players=1] ~ ~ ~ /tellraw @a ["",{"text":"ERROR: Not enough players.","color":"red"}]
-	/execute @e[type=armor_stand,name=stats,score_players=1] ~ ~ ~ /setblock 21 83 -18 minecraft:wall_sign facing=south replace {Text1:"{\"text\":\"START\",\"bold\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=area_effect_cloud,name=start_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Make sure only\"}",Text3:"{\"text\":\"one player per\"}",Text4:"{\"text\":\"team.\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/setblock ~ ~ ~ air\"}}"}
+	/execute @e[type=armor_stand,name=stats,score_players=1] 21 98 1 /tellraw @a[r=5] ["",{"text":"ERROR: Not enough players. Make sure to join the teams first.","color":"red"}]
+	//execute @e[type=armor_stand,name=stats,score_players=1] ~ ~ ~ /setblock 21 83 -18 minecraft:wall_sign facing=south replace {Text1:"{\"text\":\"START\",\"bold\":true,\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/execute @e[type=area_effect_cloud,name=start_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Make sure only\"}",Text3:"{\"text\":\"one player per\"}",Text4:"{\"text\":\"team.\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/setblock ~ ~ ~ air\"}}"}
+
+
+	/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=4] ~ ~ ~ /execute @e[type=area_effect_cloud,name=teamselection] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}					//turn off temselection
 
 
 #start_game_checked
@@ -62,9 +74,17 @@
 >{"type":"chain", "conditional":false, "auto":true}
 	/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=2] ~ ~ ~ /setblock -2 57 34 minecraft:redstone_block
 	/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -2 30 -6 minecraft:redstone_block 			
-	/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block 			
+	/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block 	
+	/placeholder		
 
-	/clear @a
+	/clear @a[team=!]
+
+	/scoreboard players tag @a[tag=elytra,team=!] remove onCourse
+	/scoreboard players tag @a[tag=elytra,team=!] remove elytraEnd
+	/scoreboard players tag @a[tag=elytra,team=!] remove onGround
+	/scoreboard players set @a[tag=elytra,team=!] elytraTimer 0
+	/scoreboard players tag @a[tag=elytra,team=!] remove elytra
+
 
 	/scoreboard players set @a playernr 0
 	/scoreboard players set @r[score_playernr=0,team=!] playernr 1
@@ -74,14 +94,21 @@
 
 	/scoreboard players reset @a[score_playernr=0] playernr
 
+	/scoreboard players reset @a maxPower
+
+	/tp @a[team=!] 21 107 19
 
 	/scoreboard players set @a timer 0
 
+	//disable startsign
+	/blockdata 21 101 1 {Text1:"{\"text\":\"\"}",Text2:"{\"text\":\"Game in\",\"color\":\"dark_gray\",\"italic\":true}",Text3:"{\"text\":\"progress\",\"color\":\"dark_gray\",\"italic\":true}",Text4:"{\"text\":\"\"}"}
+
+	//disable optionsigns
+	/blockdata 19 99 1 {Text1:"{\"text\":\"cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 21 99 1 {Text1:"{\"text\":\"cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 23 99 1 {Text1:"{\"text\":\"cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
 
 
-
-	//OLD LOBBY START SIGN
-	//setblock 21 83 -18 minecraft:air
 
 #start_game_part2
 
@@ -103,7 +130,11 @@
 	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~4 ~ ~ {auto:1}			//turn on origin creator 2
 
 	/execute @e[type=area_effect_cloud,name=things_during_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	//turn on effects
+	/execute @e[type=area_effect_cloud,name=things_outside_game] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn off outside
 	/execute @e[type=area_effect_cloud,name=remove_carpet] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}			//turn on carpet removal
+
+
+	/execute @e[type=area_effect_cloud,name=leaver-protection-midgame] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	//turn on midgame-leaver-protection
 
 
 #effects
@@ -112,6 +143,15 @@
 	/effect @a minecraft:weakness 1 10 true
 
 >{"type":"chain", "conditional":false, "auto":true}
+	/kill @e[type=item]
+
+	/replaceitem entity @a[tag=!elytra,m=2] slot.weapon.offhand air 1
+	/clear @a[tag=!elytra,m=2] elytra
+	//effect @a minecraft:speed 1000000 2 true
+	/effect @a minecraft:saturation 2 10 true
+	/effect @a minecraft:resistance 1 10 true
+	/effect @p[tag=currentPlayer] minecraft:glowing 1 0 true
+
 
 #things_during_game
 
@@ -119,3 +159,29 @@
 	/effect @a[team=!] minecraft:levitation 1000000 255 true
 
 >{"type":"chain", "conditional":false, "auto":true}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.0 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.1 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.2 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev,team=] slot.hotbar.3 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev,team=] slot.hotbar.4 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev,team=] slot.hotbar.5 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.6 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.7 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.8 stained_glass 1 8 {display:{Name:""}}
+
+
+
+#things_outside_game
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+
+>{"type":"chain", "conditional":false, "auto":true}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.0 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.1 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.2 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.3 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.4 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.5 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.6 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.7 stained_glass 1 8 {display:{Name:""}}
+	/replaceitem entity @a[m=2,tag=!dev] slot.hotbar.8 stained_glass 1 8 {display:{Name:""}}

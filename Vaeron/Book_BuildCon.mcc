@@ -2,32 +2,37 @@
 /scoreboard players enable @a exp_trigger
 >{"type":"chain", "conditional":false, "auto":true}
 
+/tp @a[tag=!firstJoin] 77 25 99
+/gamemode 1 @a[tag=!firstJoin]
+/execute @a[tag=!firstJoin] ~ ~ ~ /difficulty peaceful
+/scoreboard players tag @a[tag=!firstJoin] add firstJoin
+
 /scoreboard players tag @a[tag=hasBook] remove hasBook
-/scoreboard players tag @a[r=750] add hasBook {Inventory:[{id:"minecraft:written_book",tag:{title:"[Map Name]",author:"Team Vaeron"}}]}
+/scoreboard players tag @a[r=750] add hasBook {Inventory:[{id:"minecraft:written_book",tag:{title:"Corte Madera",author:"Team Vaeron"}}]}
 
 /tp @a[score_exp_trigger=1,score_exp_trigger_min=1] 77 25 99
-/tp @a[score_exp_trigger=2,score_exp_trigger_min=2] 449 19 210 -157 1
+/tp @a[score_exp_trigger=2,score_exp_trigger_min=2] 449 20 210 -157 1
 /tp @a[score_exp_trigger=3,score_exp_trigger_min=3] -65 19 438 150 -6
 /tp @a[score_exp_trigger=4,score_exp_trigger_min=4] 15 35 -40 90 -35
-/tp @a[score_exp_trigger=5,score_exp_trigger_min=5] 165 247 -16 ~ 16
+/tp @a[score_exp_trigger=5,score_exp_trigger_min=5] 165 244 -16 ~ 16
 /tp @a[score_exp_trigger=6,score_exp_trigger_min=6] -290 19 276 -132 -8
 /tp @a[score_exp_trigger=7,score_exp_trigger_min=7] -50 19 26 -48 -2
 /tp @a[score_exp_trigger=8,score_exp_trigger_min=8] 
 
 /scoreboard players set @a[score_exp_trigger_min=1] exp_trigger 0
 
-/scoreboard players add @e[type=Item] exp_trigger 1 {Item:{id:"minecraft:written_book",tag:{title:"[Map Name]",author:"Team Vaeron"}}}
+/scoreboard players add @e[type=Item] exp_trigger 1 {Item:{id:"minecraft:written_book",tag:{title:"Corte Madera",author:"Team Vaeron"}}}
 /kill @e[type=Item,score_exp_trigger_min=10]
 
 /give @a[tag=!hasBook] minecraft:written_book 1 0 
 {
-	title:"[Map Name]",
+	title:"Corte Madera",
 	author:"Team Vaeron",
 	generation:0,
 	pages:
 	[
 		"{
-			text:\"     [Map Name]\",
+			text:\"    Corte Madera\",
 			color:black,
 			bold:true,
 			italic:false,
@@ -68,7 +73,7 @@
 					clickEvent:
 					{
 						action:'open_url',
-						value:\"https://www.youtube.com/channel/UCSAxOXkREAxqiABm79KnllQ\"
+						value:\"https://www.youtube.com/watch?v=zz6p24u6QLE\"
 					}
 				},
 				{
@@ -107,12 +112,12 @@
 					hoverEvent:
 					{
 						action:'show_text',
-						value:\"-> page 6\"
+						value:\"-> page 8\"
 					},
 					clickEvent:
 					{
 						action:'change_page',
-						value:\"6\"
+						value:\"8\"
 					}
 				},
 				{
@@ -126,11 +131,11 @@
 					hoverEvent:
 					{
 						action:'show_text',
-						value:\"-> page 10\"
+						value:\"-> page 12\"
 					},
 					clickEvent:
 					{
-						action:'change_page',value:\"10\"
+						action:'change_page',value:\"12\"
 					}
 				}
 			]
@@ -146,7 +151,7 @@
 			extra:
 			[
 				{
-					text:\"Under the fallen regime of [Name emperor fag] live the crowded people of [Name city]. With revolts going around, the government struggles to maintain its cities. Causing the living conditions to corrode, the people’s wallets are empty.\",
+					text:\"Corte Madera, a city known for its countless conflicts and tribulation is under the control of a fierce and notorious man whose name is never to be spoken of. The place is overcrowded and there seems to be no tranquillity anywhere.\",
 					color:black,
 					bold:false,
 					italic:false
@@ -162,7 +167,7 @@
 			extra:
 			[
 				{
-					text:\"There is not enough food for all, most are malnourished.. Man has gone back to its primal habits, cohesion is rare and individualism is common. Those who fight stick together, the rest scatter looking for resources.\",
+					text:\"With revolts rising, the government struggles to maintain its cities. Living conditions are at their lowest and people's wallets are empty. Food is hard to obtain as there is not enough import for all, causing widespread malnourishment.\",
 					color:black,
 					bold:false,
 					italic:false
@@ -178,7 +183,7 @@
 			extra:
 			[
 				{
-					text:\"Even though the chance of overthrowing the emperor is slim, the citizens will fight down to the last man. Though the circumstances are dire, man won’t give up. Hope will remain and the people will rise. For in the\",
+					text:\"Humanity has gone back to its primal habits where cohesion is rare and individualism is common. Those who fight stick together and the rest scatter looking for resources... Why would such a world exist? The flourishing\",
 					color:black,
 					bold:false,
 					italic:false
@@ -194,7 +199,39 @@
 			extra:
 			[
 				{
-					text:\"darkest skies shine the brightest stars.\",
+					text:\"class system that once upheld the population's economy is crashing as prices rise drastically. Meanwhile, the streets are flooded with people due to high density housing. Despite the famine and death tolls increasing,\",
+					color:black,
+					bold:false,
+					italic:false
+				}
+			]
+		}",	
+
+		"{
+			text:\"        Lore\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"houses keep piling higher and higher with areas collapsing due to a severe lack of health and safety. For many families the living standards are low, wages are miserable and futures look bleak.\",
+					color:black,
+					bold:false,
+					italic:false
+				}
+			]
+		}",	
+
+		"{
+			text:\"        Lore\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"Virtually all work hand to mouth with their children joining in the fight for mere survival. In such a wretched world, how might the outcome unfold? What has the government planned for its population?\",
 					color:black,
 					bold:false,
 					italic:false
@@ -230,7 +267,7 @@
 					}
 				},
 				{
-					text:\"\nThe Central Place of [Name city] with the statue of the emperor. It's the heart of the city.\n\",
+					text:\"\nThe Central Place of Corte Madera with the statue of the emperor. It's the heart of the city.\n\",
 					color:gray,
 					bold:false,
 					italic:true
@@ -435,29 +472,7 @@
 					italic:true
 				},
 				{
-					text:\"Point 2\",
-					color:black,
-					bold:true,
-					italic:false,
-					hoverEvent:
-					{
-						action:'show_text',
-						value:\"Click to teleport\"
-					},
-					clickEvent:
-					{
-						action:'run_command',
-						value:\"/trigger exp_trigger set 8\"
-					}
-				},
-				{
-					text:\"\nBla bla bla\n\n\n\",
-					color:gray,
-					bold:false,
-					italic:true
-				},
-				{
-					text:\"               \"
+					text:\"\n\n\n\n\n\n               \"
 				},
 				{
 					text:\"go back\",
@@ -484,27 +499,263 @@
 			extra:
 			[
 				{
-					text:\"\nBuilders:\n\",
+					text:\"\nConcept & Style\n\",
 					color:black,
 					bold:true,
 					italic:false
 				},
 				{
-					text:\"Builder 1\nBuilder 2\n\",
-					color:black,
+					text:\"xZinjoo\n\",
+					color:blue,
 					bold:false,
 					italic:false,
-					hoverEvent:
+					clickEvent:
 					{
-						action:'show_text',
-						value:\"insert clickable links here\"
+						action:'open_url',
+						value:\"https://twitter.com/ZinjooV\"
 					}
 				},
 				{
-					text:\"\n\nCommands:\n\",
+					text:\"Necrosys\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/jasonkingnz\"
+					}
+				},
+				{
+					text:\"\n\nOrganisation\n\",
 					color:black,
 					bold:true,
 					italic:false
+				},
+				{
+					text:\"Rafessor\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/therafessor\"
+					}
+				},
+				{
+					text:\"\n\n\n               \"
+				},
+				{
+					text:\"go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}",
+		"{
+			text:\"       Credits\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"\nBuilders\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"onlydonut\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/Donut_ish\"
+					}
+				},
+				{
+					text:\"Skillsplus\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"http://www.planetminecraft.com/member/skills2135809/\"
+					}
+				},
+				{
+					text:\"Spoyders\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/Spoyders\"
+					}
+				},
+				{
+					text:\"anoppe\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/AnoppeMC\"
+					}
+				},
+				{
+					text:\"ItIsACloud\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/d_wolke\"
+					}
+					
+				},
+				{
+					text:\"_Vargan\n\",
+					color:black,
+					bold:false,
+					italic:false
+				},
+				{
+					text:\"LastBanan\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/BananLast\"
+					}
+				},
+				{
+					text:\"Schwabe98\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/schwabe98\"
+					}
+				},
+				{
+					text:\"\n               \"
+				},
+				{
+					text:\"go back\",
+					color:black,
+					bold:false,
+					italic:true,
+					clickEvent:
+					{
+						action:'change_page',value:\"1\"
+					}
+				}
+			]
+		}",
+		"{
+			text:\"       Credits\n================\n\",
+			color:dark_red,
+			bold:true,
+			italic:false,
+			extra:
+			[
+				{
+					text:\"\nBuilders\n\",
+					color:black,
+					bold:true,
+					italic:false
+				},
+				{
+					text:\"Firun_Brand\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/Firun_Brand\"
+					}
+				},
+				{
+					text:\"HarryD\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/DerHeassliche\"
+					}
+				},
+				{
+					text:\"FallenArchangel_\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/FallenArchMc\"
+					}
+				},
+
+				{	text:\"\nSpecial thanks to\",
+					color:black,
+					bold:true,
+					italic:false	
+				},
+				{
+					text:\"RannmausFan\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"http://rennmausfan.deviantart.com/gallery/\"
+					}
+				},
+				{
+					text:\"Kellerbier\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/Teweran\"
+					}
+					
+				},
+				{
+					text:\"Laeonathan\n\",
+					color:blue,
+					bold:false,
+					italic:false,
+					clickEvent:
+					{
+						action:'open_url',
+						value:\"https://twitter.com/Laeonathan\"
+					}
+					
 				},
 				{
 					text:\"Plagiatus\n\",

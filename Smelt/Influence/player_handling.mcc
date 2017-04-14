@@ -25,7 +25,7 @@
 	/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /execute @p[tag=currentPlayer,score_playernr_min=4,score_playernr=4] ~ ~ ~ /scoreboard players tag @a[score_playernr_min=1,score_playernr=1] add nextPlayer
 
 	//finish up
-	/clear @a
+	/clear @a[team=!]
 	/scoreboard players tag @a[tag=currentPlayer] remove currentPlayer
 	/scoreboard players tag @a[tag=nextPlayer] add currentPlayer
 	/scoreboard players tag @a[tag=nextPlayer] remove nextPlayer
@@ -39,10 +39,20 @@
 	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}			//turn off origin creator 1
 	/execute @e[type=area_effect_cloud,name=create_origin] ~ ~ ~ /blockdata ~4 ~ ~ {auto:1}			//turn off origin creator 2
 
+	//off
+	/execute @e[type=area_effect_cloud,name=items_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}	//turn on second phase item handling
+	/execute @e[type=area_effect_cloud,name=powerup] ~ ~ ~ /blockdata ~1 ~ ~ {auto:0}				//turn on second phase powerup
+
+	//remove origin and target, if they still exist
+	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
+	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+	/execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+
 
 #leaver-protection-midgame
 
->{"type":"repeating", "conditional":false, "auto":true}
+>{"type":"repeating", "conditional":false, "auto":false}
 	/searge
 
 >{"type":"chain", "conditional":false, "auto":true}
@@ -50,7 +60,7 @@
 /testfor @p[score_playernr_min=1,score_playernr=1]
 /testfor @p[score_playernr_min=2,score_playernr=2]
 >{"conditional":true}
-/testforblock ~-2 ~ ~ chain_command_block -1 {SuccessCount:0}
+/testforblock ~-2 ~ ~ chain_command_block * {SuccessCount:0}
 /scoreboard players set @p[score_playernr_min=2,score_playernr=2] playernr 1
 /scoreboard players tag @p[score_playernr_min=1,score_playernr=1] add changedNr
 
@@ -58,7 +68,7 @@
 /testfor @p[score_playernr_min=2,score_playernr=2]
 /testfor @p[score_playernr_min=3,score_playernr=3]
 >{"conditional":true}
-/testforblock ~-2 ~ ~ chain_command_block -1 {SuccessCount:0}
+/testforblock ~-2 ~ ~ chain_command_block * {SuccessCount:0}
 /scoreboard players set @p[score_playernr_min=3,score_playernr=3] playernr 2
 /scoreboard players tag @p[score_playernr_min=2,score_playernr=2] add changedNr
 
@@ -66,13 +76,13 @@
 /testfor @p[score_playernr_min=3,score_playernr=3]
 /testfor @p[score_playernr_min=4,score_playernr=4]
 >{"conditional":true}
-/testforblock ~-2 ~ ~ chain_command_block -1 {SuccessCount:0}
+/testforblock ~-2 ~ ~ chain_command_block * {SuccessCount:0}
 /scoreboard players set @p[score_playernr_min=4,score_playernr=4] playernr 3
 /scoreboard players tag @p[score_playernr_min=3,score_playernr=3] add changedNr
 
 >{"conditional":false}
 /testfor @p[tag=currentPlayer]
-/testforblock ~-1 ~ ~ chain_command_block -1 {SuccessCount:0}
+/testforblock ~-1 ~ ~ chain_command_block * {SuccessCount:0}
 >{"conditional":true}
 /testfor @p[score_playernr_min=1,score_playernr=1,tag=changedNr]
 /scoreboard players tag @p[score_playernr_min=3,score_playernr=3] add currentPlayer
@@ -80,7 +90,7 @@
 
 >{"conditional":false}
 /testfor @p[tag=currentPlayer]
-/testforblock ~-1 ~ ~ chain_command_block -1 {SuccessCount:0}
+/testforblock ~-1 ~ ~ chain_command_block * {SuccessCount:0}
 >{"conditional":true}
 /testfor @p[score_playernr_min=2,score_playernr=2,tag=changedNr]
 /scoreboard players tag @p[score_playernr_min=1,score_playernr=1] add currentPlayer
@@ -88,7 +98,7 @@
 
 >{"conditional":false}
 /testfor @p[tag=currentPlayer]
-/testforblock ~-1 ~ ~ chain_command_block -1 {SuccessCount:0}
+/testforblock ~-1 ~ ~ chain_command_block * {SuccessCount:0}
 >{"conditional":true}
 /testfor @p[score_playernr_min=3,score_playernr=3,tag=changedNr]
 /scoreboard players tag @p[score_playernr_min=2,score_playernr=2] add currentPlayer
@@ -96,17 +106,71 @@
 >{"conditional":false}
 /scoreboard players tag @a[tag=changedNr] remove changedNr
 
+/testfor @p[tag=currentPlayer]
+/testforblock ~-1 ~ ~ chain_command_block * {SuccessCount:0}
+>{"conditional":true}
+/scoreboard players tag @p[score_playernr_min=3,score_playernr=3] add currentPlayer
+/execute @e[type=area_effect_cloud,name=next_player] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+>{"conditional":false}
+
+/testfor @p[tag=currentPlayer]
+/testforblock ~-1 ~ ~ chain_command_block * {SuccessCount:0}
+>{"conditional":true}
+/scoreboard players tag @p[score_playernr_min=2,score_playernr=2] add currentPlayer
+/execute @e[type=area_effect_cloud,name=next_player] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+>{"conditional":false}
+
+/testfor @p[tag=currentPlayer]
+/testforblock ~-1 ~ ~ chain_command_block * {SuccessCount:0}
+>{"conditional":true}
+/scoreboard players tag @p[score_playernr_min=1,score_playernr=1] add currentPlayer
+/execute @e[type=area_effect_cloud,name=next_player] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+>{"conditional":false}
 
 #leaver-reset
 >{"type":"repeating", "conditional":false, "auto":true}
 	/searge
 
 >{"type":"chain", "conditional":false, "auto":true}
-	/scoreboard players reset @a[score_leave_min=3]
+	/scoreboard players set @a[score_leave_min=2] leave 0
+	/scoreboard players add @a[score_leave_min=1] leave 1
+	//scoreboard players reset @a[score_leave_min=1]
 	/scoreboard players tag @a[score_leave_min=1] remove currentPlayer
 	/clear @a[score_leave_min=1]
 	/scoreboard teams leave @a[score_leave_min=1]
 	/effect @a[score_leave_min=1] clear
-	/tp @a[score_leave_min=1] 16 96 -11
+	/tp @a[score_leave_min=1] -18 79 59 180 0
+	/scoreboard players enable @a[score_leave_min=1] gotoGame
 	/gamemode 2 @a[score_leave_min=1]
-	/scoreboard players add @a[score_leave_min=1] leave 1
+	/scoreboard players tag @a[score_leave_min=1] remove elytra
+	/scoreboard players tag @a[score_leave_min=1] remove onCourse
+	/scoreboard players tag @a[score_leave_min=1] remove elytraEnd
+	/scoreboard players tag @a[score_leave_min=1] remove onGround
+	/scoreboard players set @a[score_leave_min=1] elytraTimer 0
+	/title @a[score_leave_min=1] times 0 20 0
+
+
+	/scoreboard players reset @a[score_leave_min=1] playernr
+
+
+	/scoreboard players set @a[m=2,x=-10,y=90,z=-10,dx=60,dy=1,dz=60] leave 1
+
+	/tp @a[score_gotoGame_min=1] 21 97 19
+	/scoreboard players reset @a[score_gotoGame_min=1] gotoGame
+
+#first_timer_join
+>{"type":"repeating", "conditional":false, "auto":true}
+	/searge
+
+>{"type":"chain", "conditional":false, "auto":true}
+	/tp @a[tag=!firstJoin] -18 79 59 180 0
+	/gamemode adventure @a[m=!2,tag=!firstJoin]
+	/spawnpoint @a[tag=!firstJoin] 21 97 19
+	/scoreboard players enable @a[tag=!firstJoin] gotoGame
+	/title @a[tag=!firstJoin] times 0 20 0
+	/tellraw @a[tag=!firstJoin] ["",{"text":"Check out the App that inspired this map!\n"},{"text":"click here","color":"blue","italic":true,"underlined":true,"clickEvent":{"action":"open_url","value":"https://play.google.com/store/apps/details?id=com.teremok.influence"}}]
+
+	/scoreboard players tag @a[tag=!firstJoin] add firstJoin
+
+
+// /tellraw @p {"translate":"Resourcepack check failed. Please equip the Resourcepack. Click here to download the RP.","color":"red","clickEvent":{"action":"open_url","value":"http://www.mediafire.com/file/v5vusz0v7s6zfto/Control_R_1.0.1.zip"},"with":[{"text":"Resourcepack found. Click here to start the map.","color":"green","clickEvent":{"action":"run_command","value":"/trigger gotoGame set 1"}}]}

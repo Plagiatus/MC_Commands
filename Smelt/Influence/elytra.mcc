@@ -1,0 +1,54 @@
+>{"moduleStopZ": 3}
+
+!pre /scoreboard players set #20 elytraTimer 20
+!pre /scoreboard players set #5 elytraTimer 5
+
+#elytra
+
+>{"type":"repeating", "conditional":false, "auto":true}
+	/searge
+
+>{"type":"chain", "conditional":false, "auto":true}
+	//start
+	/tellraw @a[x=-43,y=97,z=14,dx=2,dy=1,dz=10,tag=!elytra,m=2] ["",{"text":"Welcome to the elytra minigame. Try to finish the race as fast as you can without landing.\n","italic":true},{"text":"WARNING: Flashing colors.","color":"dark_red"}]
+	/replaceitem entity @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,tag=!elytra,m=2] slot.armor.chest minecraft:elytra 1 0 {HideFlags:5,Unbreakable:1,ench:[{id:10,lvl:1}]}
+	/replaceitem entity @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,tag=!elytra,m=2] slot.weapon.offhand minecraft:fireworks 1
+	/scoreboard players tag @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,m=2,tag=!elytra] add elytra
+
+	//notStart
+	/scoreboard players tag @a[x=-39,y=97,z=14,dx=2,dy=6,dz=10] remove elytra
+
+	//fireworks
+	/scoreboard players set @a[tag=elytra,score_fireworks_min=1] fireworks 0
+	/scoreboard players set @a[tag=elytra] fireworks 1 {Inventory:[{id:"minecraft:fireworks"}]}
+	/replaceitem entity @a[tag=elytra,score_fireworks=0] slot.weapon.offhand minecraft:fireworks 1
+
+	//start timer
+	/scoreboard players tag @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=9] add onCourse
+	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=1,dz=9] elytraTimer 1
+	/scoreboard players add @a[tag=onCourse,score_elytraTimer_min=1] elytraTimer 1	
+
+
+	//detect landing
+	/scoreboard players tag @a[tag=onGround] remove onGround
+	/scoreboard players tag @a[tag=onCourse] add onGround {OnGround:1b}
+	/tp @a[tag=onGround] -40 97 19 90 0
+	/execute @a[tag=onGround] ~ ~ ~ playsound minecraft:entity.wither.death master @a[c=1] ~ ~ ~ .5 2
+	/scoreboard players tag @a[tag=onGround] remove onCourse
+	/scoreboard players tag @a[tag=onGround] remove onGround
+
+	//checkpoint
+	/scoreboard players tag @e[m=2,x=17,y=114,z=51,dx=8,dy=4,dz=1,tag=elytra] add checkpoint
+
+	//finish
+	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=10,dz=8,tag=elytra] add elytraEndStart {Tags:["checkpoint"]}
+	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=10,dz=8,tag=!checkpoint] add cheater {Tags:["elytra"]}
+
+	/tellraw @a[tag=cheater] ["",{"text":" Stop cheating and use the route you're supposed to use!!!!","color":"red","italic":true}]
+
+	/scoreboard players set @p[tag=cheater] elytraTimer 0
+	/scoreboard players set @p[tag=cheater] elytraTimerDeci 0
+	/scoreboard players set @p[tag=cheater] elytraTimertemp 0
+	/scoreboard players tag @p[tag=cheater] remove elytra
+	/scoreboard players tag @p[tag=cheater] remove onCourse
+	/scoreboard players tag @p[tag=cheater] remove cheater

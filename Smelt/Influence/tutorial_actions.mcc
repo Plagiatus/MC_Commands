@@ -1,0 +1,223 @@
+>{"moduleStopZ": 2}
+
+#tutorial_actions
+
+/////////////////////////////
+//
+//		Tutorial 2
+//
+/////////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_2_reset"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 91 24 minecraft:redstone_block
+	/setblock -23 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2] {CustomName:""}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=1,score_id=1] {CustomName:"5"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=3,score_id=3] {CustomName:"1"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_2_step_1"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 88 24 minecraft:redstone_block
+	/setblock -23 94 25 minecraft:redstone_block
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_2_step_2"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 85 24 minecraft:redstone_block
+	/setblock -23 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=1,score_id=1] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=2,score_id=2] {CustomName:"4"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_2_step_3"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 82 24 minecraft:redstone_block
+	/setblock -23 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=2,score_id=2] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=3,score_id=3] {CustomName:"3"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_2_step_4"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 79 24 minecraft:redstone_block
+	/setblock -23 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=3,score_id=3] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=4,score_id=4] {CustomName:"2"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_2_step_5"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 76 24 minecraft:redstone_block
+	/setblock -23 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=4,score_id=4] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=2,score_tutorial=2,score_id_min=5,score_id=5] {CustomName:"1"}
+
+
+
+/////////////////////////////
+//
+//		Tutorial 3
+//
+/////////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_3_reset"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -30 91 24 minecraft:redstone_block
+	/setblock -31 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=1,score_id=1] {CustomName:"7"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=2,score_id=2] {CustomName:"4"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=3,score_id=3] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=4,score_id=4] {CustomName:"4"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=5,score_id=6] {CustomName:"3"}
+
+	>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_3_step_1"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -30 88 24 minecraft:redstone_block
+	/setblock -31 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=1,score_id=1] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=2,score_id=2] {CustomName:"3"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=3,score_id=3] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=4,score_id=4] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=5,score_id=6] {CustomName:"1"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_3_step_1"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -30 85 24 minecraft:redstone_block
+	/setblock -31 94 25 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=1,score_id=1] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=2,score_id=2] {CustomName:"3"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=3,score_id=3] {CustomName:"1"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=4,score_id=4] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=3,score_tutorial=3,score_id_min=5,score_id=6] {CustomName:"1"}
+
+
+
+/////////////////////////////
+//
+//		Tutorial 5
+//
+/////////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_reset"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 91 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5] {CustomName:"1"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_step_1"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 88 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=1,score_id=1] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=2,score_id=2] {CustomName:"8"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_step_2"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 85 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=1,score_id=1] {CustomName:"3"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_step_3"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 82 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=1,score_id=1] {CustomName:"4"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_step_4"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 79 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=1,score_id=1] {CustomName:"5"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_step_5"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 76 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=1,score_id=1] {CustomName:"6"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_step_6"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 73 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=1,score_id=1] {CustomName:"7"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_5_step_7"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -38 70 8 minecraft:redstone_block
+	/setblock -39 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=5,score_tutorial=5,score_id_min=1,score_id=1] {CustomName:"8"}
+
+
+/////////////////////////////
+//
+//		Tutorial 6
+//
+/////////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_6_reset"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -30 91 8 minecraft:redstone_block
+	/setblock -31 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=6,score_tutorial=6] {CustomName:"1"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_6_step_1"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -30 88 8 minecraft:redstone_block
+	/setblock -31 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=6,score_tutorial=6,score_id_min=1,score_id=1] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=6,score_tutorial=6,score_id_min=3,score_id=3] {CustomName:"3"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=6,score_tutorial=6,score_id_min=4,score_id=4] {CustomName:"5"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=6,score_tutorial=6,score_id_min=5,score_id=5] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=6,score_tutorial=6,score_id_min=6,score_id=6] {CustomName:"4"}
+
+
+
+
+/////////////////////////////
+//
+//		Tutorial 7
+//
+/////////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_7_reset"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 91 8 minecraft:redstone_block
+	/setblock -23 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7] {CustomName:""}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=1,score_id=1] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=4,score_id=4] {CustomName:"2"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_7_step_1"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 88 8 minecraft:redstone_block
+	/setblock -23 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=4,score_id=4] {CustomName:""}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=3,score_id=3] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=5,score_id=5] {CustomName:"2"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_7_step_2"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/setblock -22 85 8 minecraft:redstone_block
+	/setblock -23 94 9 minecraft:redstone_block
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=1,score_id=1] {CustomName:""}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=2,score_id=2] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=6,score_id=6] {CustomName:"2"}

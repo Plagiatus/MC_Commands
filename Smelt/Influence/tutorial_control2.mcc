@@ -1,0 +1,116 @@
+>{"moduleStopZ": 2}
+
+
+$testtimer = scoreboard players test #tutorial timer
+
+
+#tutorial_control
+
+>{"type":"chain", "conditional":false, "auto":true}	
+	/$testtimer 240 240
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_3_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_4] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 260 260
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @r[type=area_effect_cloud,tag=tutorial_3_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_5] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 280 280
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_3_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_6] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 300 300
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_3] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @r[type=area_effect_cloud,tag=tutorial_3_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_7] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 320 320
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_4] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_3_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 340 340
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_5] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @r[type=area_effect_cloud,tag=tutorial_3_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 360 360
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_3_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 380 380
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @r[type=area_effect_cloud,tag=tutorial_3_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_3] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 400 400
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_3_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_4] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 420 420
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_3] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @r[type=area_effect_cloud,tag=tutorial_3_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_5] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 440 440
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_4] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_3_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_6] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_reset] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	
+	>{"conditional":false}
+	/$testtimer 460 460
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=tutorial_2_step_5] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @r[type=area_effect_cloud,tag=tutorial_3_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_5_step_7] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_6_step_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=tutorial_7_step_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
+

@@ -1,0 +1,101 @@
+>{	"moduleStopX": 30,
+	"moduleStopZ": 3}
+
+
+#teamselection
+
+>{"type":"repeating", "conditional":false, "auto":true}
+	/searge
+
+>{"type":"chain", "conditional":false, "auto":true}
+
+	/execute @e[type=armor_stand,tag=white_hexagon] ~ ~.4 ~ /particle blockcrack ~ ~ ~ 0 0 0 0 1 normal @a 35
+	/execute @e[type=armor_stand,tag=white_hexagon] ~ ~.4 ~ /execute @a[r=1,team=!] ~ ~ ~ /tellraw @a ["",{"selector":"@a[c=1]"},{"text":" prefers to spectate."}]
+	/execute @e[type=armor_stand,tag=white_hexagon] ~ ~.4 ~ /scoreboard teams leave @a[r=1,team=!]
+
+	//red
+	/testfor @a[team=red]
+	/testforblock ~-1 ~ ~ minecraft:chain_command_block * {SuccessCount:0}
+	>{"conditional":true}
+	/execute @e[type=armor_stand,tag=red_hexagon] ~ ~.7 ~ /particle blockcrack ~ ~ ~ 0 0 0 0 1 normal @a 57379
+	/execute @e[type=armor_stand,tag=red_hexagon] ~ ~.7 ~ /execute @a[c=1,r=1] ~ ~ ~ /tellraw @a ["",{"selector":"@a[c=1]"},{"text":" is now player "},{"text":"red","color":"red"}]
+	/execute @e[type=armor_stand,tag=red_hexagon] ~ ~.7 ~ /execute @a[c=1,r=1] ~ ~ ~ /scoreboard teams join red @a[c=1]
+	>{"conditional":false}
+
+
+	//blue
+	/testfor @a[team=blue]
+	/testforblock ~-1 ~ ~ minecraft:chain_command_block * {SuccessCount:0}
+	>{"conditional":true}
+	/execute @e[type=armor_stand,tag=blue_hexagon] ~ ~1.6 ~ /particle blockcrack ~ ~ ~ 0 0 0 0 1 normal @a 45091
+	/execute @e[type=armor_stand,tag=blue_hexagon] ~ ~1.6 ~ /execute @a[c=1,r=1] ~ ~ ~ /tellraw @a ["",{"selector":"@a[c=1]"},{"text":" is now player "},{"text":"blue","color":"blue"}]
+	/execute @e[type=armor_stand,tag=blue_hexagon] ~ ~1.6 ~ /execute @a[c=1,r=1] ~ ~ ~ /scoreboard teams join blue @a[c=1]
+	>{"conditional":false}
+
+	//green
+	/testfor @a[team=green]
+	/testforblock ~-1 ~ ~ minecraft:chain_command_block * {SuccessCount:0}
+	>{"conditional":true}
+	/execute @e[type=armor_stand,tag=green_hexagon] ~ ~1 ~ /particle blockcrack ~ ~ ~ 0 0 0 0 1 normal @a 20515
+	/execute @e[type=armor_stand,tag=green_hexagon] ~ ~1 ~ /execute @a[c=1,r=1] ~ ~ ~ /tellraw @a ["",{"selector":"@a[c=1]"},{"text":" is now player "},{"text":"green","color":"green"}]
+	/execute @e[type=armor_stand,tag=green_hexagon] ~ ~1 ~ /execute @a[c=1,r=1] ~ ~ ~ /scoreboard teams join green @a[c=1]
+	>{"conditional":false}
+
+
+	//yellow
+	/testfor @a[team=yellow]
+	/testforblock ~-1 ~ ~ minecraft:chain_command_block * {SuccessCount:0}
+	>{"conditional":true}
+	/execute @e[type=armor_stand,tag=yellow_hexagon] ~ ~1.25 ~ /particle blockcrack ~ ~ ~ 0 0 0 0 1 normal @a 16419
+	/execute @e[type=armor_stand,tag=yellow_hexagon] ~ ~1.25 ~ /execute @a[c=1,r=1] ~ ~ ~ /tellraw @a ["",{"selector":"@a[c=1]"},{"text":" is now player "},{"text":"yellow","color":"yellow"}]
+	/execute @e[type=armor_stand,tag=yellow_hexagon] ~ ~1.25 ~ /execute @a[c=1,r=1] ~ ~ ~ /scoreboard teams join yellow @a[c=1]
+	>{"conditional":false}
+
+#options
+
+/////////////////////////
+//
+//		Mapsize
+//
+/////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"mapsize_auto"}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 19 99 1	{Text1:"{\"text\":\"\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=mapsize_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Board Size\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"title @a actionbar [\\\"\\\",{\\\"text\\\":\\\"Board Size: \\\",\\\"color\\\":\\\"white\\\",\\\"bold\\\":true},{\\\"text\\\":\\\"2 players\\\",\\\"color\\\":\\\"dark_red\\\",\\\"bold\\\":false}]\"},\"bold\":true}",Text3:"{\"text\":\"auto\",\"bold\":true,\"italic\":true,\"color\":\"green\"}",Text4:"{\"text\":\"\"}"}//sign
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~2 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=2] ~ ~ ~ /setblock -2 57 34 minecraft:redstone_block"}
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~3 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -2 30 -6 minecraft:redstone_block"}			
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~4 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block"}		
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~5 ~ ~ /blockdata ~ ~ ~ {Command:"/placeholder"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"mapsize_2"}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 19 99 1 {Text1:"{\"text\":\"\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=mapsize_3] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Board Size\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"title @a actionbar [\\\"\\\",{\\\"text\\\":\\\"Board Size: \\\",\\\"color\\\":\\\"white\\\",\\\"bold\\\":true},{\\\"text\\\":\\\"3 players\\\",\\\"color\\\":\\\"dark_red\\\",\\\"bold\\\":false}]\"},\"bold\":true}",Text3:"{\"text\":\"2 players\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}	//sign
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~2 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=2] ~ ~ ~ /setblock -2 57 34 minecraft:redstone_block"}
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~3 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -2 30 -6 minecraft:redstone_block"}			
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~4 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block"}		
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~5 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=4] ~ ~ ~ /tellraw @a [\"\",{\"text\":\"Too many players for selected playfieldsize. Falling back to default size.\",\"color\":\"red\",\"italic\":true}]"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"mapsize_3"}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 19 99 1 {Text1:"{\"text\":\"\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=mapsize_4] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Board Size\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"title @a actionbar [\\\"\\\",{\\\"text\\\":\\\"Board Size: \\\",\\\"color\\\":\\\"white\\\",\\\"bold\\\":true},{\\\"text\\\":\\\"4 players\\\",\\\"color\\\":\\\"dark_red\\\",\\\"bold\\\":false}]\"},\"bold\":true}",Text3:"{\"text\":\"3 players\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}	//sign
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~2 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=2] ~ ~ ~ /setblock -2 30 -6 minecraft:redstone_block"}
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~3 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -2 30 -6 minecraft:redstone_block"}			
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~4 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block"}
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~5 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /tellraw @a [\"\",{\"text\":\"Too many players for selected playfieldsize. Falling back to default size.\",\"color\":\"red\",\"italic\":true}]"}
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"mapsize_4"}
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 19 99 1 {Text1:"{\"text\":\"\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=mapsize_auto] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Board Size\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"title @a actionbar [\\\"\\\",{\\\"text\\\":\\\"Board Size: \\\",\\\"color\\\":\\\"white\\\",\\\"bold\\\":true},{\\\"text\\\":\\\"auto\\\",\\\"color\\\":\\\"green\\\",\\\"bold\\\":false}]\"},\"bold\":true}",Text3:"{\"text\":\"4 players\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}	//sign
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~2 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=2,score_players=2] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block"}
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~3 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=3,score_players=3] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block"}			
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~4 ~ ~ /blockdata ~ ~ ~ {Command:"/execute @e[type=armor_stand,name=stats,score_players_min=4,score_players=4] ~ ~ ~ /setblock -3 57 0 minecraft:redstone_block"}		
+	/execute @e[type=area_effect_cloud,name=start_game_checked] ~5 ~ ~ /blockdata ~ ~ ~ {Command:"/placeholder"}
+

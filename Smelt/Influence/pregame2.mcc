@@ -1,0 +1,100 @@
+>{	"moduleStopX": 30,
+	"moduleStopZ": 3}
+
+/////////////////////////
+//
+//		Startingpower
+//
+/////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_2"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_3] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"2\",\"bold\":true,\"italic\":true,\"color\":\"dark_green\"}",Text4:"{\"text\":\"(default)\",\"italic\":true}"}
+	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 2"}
+	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"2 (default)","color":"green","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_3"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_4] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"3\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 3"}
+	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"3","color":"dark_red","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_4"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_5] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"4\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 4"}
+	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"4","color":"dark_red","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_5"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_6] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"5\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 5"}
+	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"5","color":"dark_red","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_6"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_7] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"6\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 6"}
+	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"6","color":"dark_red","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_7"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_8] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"7\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 7"}
+	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"7","color":"dark_red","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_8"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"8\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 8"}
+	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"8","color":"dark_red","bold":false}]
+
+
+
+/////////////////////////
+//
+//		AFK Timer
+//
+/////////////////////////
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"afktimer_off"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 2 77 -26 {auto:0}
+
+	/blockdata 23 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=afktimer_1] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"AFK-Timer\",\"bold\":true}",Text3:"{\"text\":\"off\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
+
+	/title @a actionbar ["",{"text":"AFK-Timer: ","color":"white","bold":true},{"text":"off","color":"dark_red","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"afktimer_1"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 2 77 -26 {auto:1}
+	/blockdata 3 77 -26 {Command:"tellraw @p[tag=currentPlayer,score_timer=400,score_timer_min=400] [\"\",{\"text\":\"You haven't done any action for the last 20 seconds. Do something in the next 10 seconds or your turn will be ended.\",\"color\":\"dark_red\",\"italic\":true}]"}
+	/blockdata 4 77 -26 {Command:"execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}"}
+	/blockdata 5 77 -26 {Command:"execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=skip_turn] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}"}
+	/blockdata 6 77 -26 {Command:"title @p[tag=currentPlayer,score_timer_min=400,score_timer=600] title [\"\",{\"text\":\"WARNING\",\"color\":\"red\"}]"}
+
+	/blockdata 23 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=afktimer_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"AFK-Timer\",\"bold\":true}",Text3:"[\"\",{\"text\":\"20s\",\"bold\":true,\"italic\":true,\"color\":\"gold\"},{\"text\":\" + \",\"bold\":true,\"italic\":true},{\"text\":\"10s\",\"bold\":true,\"italic\":true,\"color\":\"dark_red\"}]",Text4:"{\"text\":\"(default)\",\"italic\":true}"}
+
+	/title @a actionbar ["",{"text":"AFK-Timer: ","color":"white","bold":true},{"text":"20s: warning + 10s: forced advancement (default)","color":"green","bold":false}]
+
+>{"type":"impulse", "conditional":false, "auto":false, "markerTag":"afktimer_2"}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
+	/blockdata 2 77 -26 {auto:1}
+	/blockdata 3 77 -26 {Command:"tellraw @p[tag=currentPlayer,score_timer=1200,score_timer_min=1200] [\"\",{\"text\":\"You haven't done any action for the last 60 seconds. Do something in the next 20 seconds or your turn will be ended.\",\"color\":\"dark_red\",\"italic\":true}]"}
+	/blockdata 4 77 -26 {Command:"execute @p[tag=currentPlayer,score_timer_min=1600,score_timer=1600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}"}
+	/blockdata 5 77 -26 {Command:"execute @p[tag=currentPlayer,score_timer_min=1600,score_timer=1600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=skip_turn] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}"}
+	/blockdata 6 77 -26 {Command:"title @p[tag=currentPlayer,score_timer_min=1200,score_timer=1600] title [\"\",{\"text\":\"WARNING\",\"color\":\"red\"}]"}
+
+	/blockdata 23 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=afktimer_off] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"AFK-Timer\",\"bold\":true}",Text3:"[\"\",{\"text\":\"60s\",\"bold\":true,\"italic\":true,\"color\":\"gold\"},{\"text\":\" + \",\"bold\":true,\"italic\":true},{\"text\":\"20s\",\"bold\":true,\"italic\":true,\"color\":\"dark_red\"}]",Text4:"{\"text\":\"\"}"}
+
+	/title @a actionbar ["",{"text":"AFK-Timer: ","color":"white","bold":true},{"text":"60s: warning + 20s: forced advancement","color":"dark_red","bold":false}]

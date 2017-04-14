@@ -1,6 +1,10 @@
 $origin = @e[type=area_effect_cloud,tag=origin]
 $target = @e[type=area_effect_cloud,tag=target]
 
+
+//			│┤╣║╗╝┐
+
+
 #blocks
 >{"type":"impulse", "conditional":false, "auto":false}
 	/blockdata ~ ~ ~ {auto:0}
@@ -16,6 +20,16 @@ $target = @e[type=area_effect_cloud,tag=target]
 	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=south,half=top
 	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=1,score_team=1] ~ ~ ~ /setblock ~ ~ ~ nether_brick_stairs facing=north,half=top
 
+	//red_active
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=west,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=south,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=1,score_team=1,tag=origin] ~ ~ ~ /setblock ~ ~ ~ birch_stairs facing=north,half=top
+
 	//blue
 	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=east,half=bottom
 	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=west,half=bottom 
@@ -26,6 +40,16 @@ $target = @e[type=area_effect_cloud,tag=target]
 	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=south,half=top
 	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=2,score_team=2] ~ ~ ~ /setblock ~ ~ ~ purpur_stairs facing=north,half=top
 
+	//blue_active
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=west,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=south,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=2,score_team=2,tag=origin] ~ ~ ~ /setblock ~ ~ ~ acacia_stairs facing=north,half=top
+
 	//green
 	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=east,half=bottom
 	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=west,half=bottom
@@ -35,6 +59,16 @@ $target = @e[type=area_effect_cloud,tag=target]
 	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=west,half=top
 	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=south,half=top
 	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=3,score_team=3] ~ ~ ~ /setblock ~ ~ ~ jungle_stairs facing=north,half=top
+	
+	//green_active
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=west,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=south,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=3,score_team=3,tag=origin] ~ ~ ~ /setblock ~ ~ ~ dark_oak_stairs facing=north,half=top
 
 	//yellow
 	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=east,half=bottom
@@ -45,6 +79,16 @@ $target = @e[type=area_effect_cloud,tag=target]
 	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=west,half=top
 	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=south,half=top
 	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=4,score_team=4] ~ ~ ~ /setblock ~ ~ ~ sandstone_stairs facing=north,half=top
+
+	//yellow_active
+	/execute @e[type=area_effect_cloud,score_power=1,score_power_min=1,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=east,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=2,score_power_min=2,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=west,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=3,score_power_min=3,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=south,half=bottom 
+	/execute @e[type=area_effect_cloud,score_power=4,score_power_min=4,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=north,half=bottom
+	/execute @e[type=area_effect_cloud,score_power=5,score_power_min=5,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=east,half=top
+	/execute @e[type=area_effect_cloud,score_power=6,score_power_min=6,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=west,half=top
+	/execute @e[type=area_effect_cloud,score_power=7,score_power_min=7,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=south,half=top
+	/execute @e[type=area_effect_cloud,score_power=8,score_power_min=8,score_team_min=4,score_team=4,tag=origin] ~ ~ ~ /setblock ~ ~ ~ spruce_stairs facing=north,half=top
 
 
 	//names 
@@ -60,7 +104,7 @@ $target = @e[type=area_effect_cloud,tag=target]
 
 	//remove glass/set new glass
 	/execute @e[type=area_effect_cloud,name=handle_supportblocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
-
+/*
 #origin_visual
 >{"type":"repeating", "conditional":false, "auto":true}
 	/execute @e[type=area_effect_cloud,tag=origin] ~ ~ ~ /teleport @e[type=armor_stand,tag=origin_visual] ~ ~1 ~
@@ -68,14 +112,14 @@ $target = @e[type=area_effect_cloud,tag=target]
 >{"type":"chain", "conditional":false, "auto":true}
 	/tp @e[type=armor_stand,tag=origin_visual] ~ ~ ~ ~1 ~
 
-
+*/
 #handle_supportblocks
 >{"type":"impulse", "conditional":false, "auto":false}
 	/blockdata ~ ~ ~ {auto:0}
 >{"type":"chain", "conditional":false, "auto":true}
 	/scoreboard players tag @e[type=area_effect_cloud,tag=possibleTarget] remove possibleTarget
-	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ /fill ~ ~ ~ ~ ~ ~ air 0 replace glass
-	/execute $origin ~ ~ ~ /execute @e[type=area_effect_cloud,r=3,tag=cellMarker] ~ ~ ~ /fill ~ ~ ~ ~ ~ ~ glass 0 replace air
+	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ /fill ~ ~ ~ ~ ~ ~ barrier 0 replace glass
+	/execute $origin ~ ~ ~ /execute @e[type=area_effect_cloud,r=3,tag=cellMarker] ~ ~ ~ /fill ~ ~ ~ ~ ~ ~ glass 0 replace barrier
 	/execute $origin ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,r=3,tag=cellMarker] add possibleTarget
 
 	/execute @p[tag=currentPlayer,team=red] ~ ~ ~ /scoreboard players tag @e[type=area_effect_cloud,score_team=1,score_team_min=1] add possibleTarget

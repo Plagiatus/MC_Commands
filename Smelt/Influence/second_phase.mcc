@@ -1,8 +1,14 @@
+>{"moduleStopZ": 6}
+
 #start_second_phase
 >{"type":"impulse", "conditional":false, "auto":false}
 	/blockdata ~ ~ ~ {auto:0}
 
 >{"type":"chain", "conditional":false, "auto":true}
+	//tellraw 1s
+	/tellraw @p[tag=currentPlayer] ["",{"text":"You only have 1's left. Proceeding to second phase automatically...","color":"gray","italic":true}]
+	/blockdata ~-1 ~ ~  {auto:0}
+
 	//reset timer
 	/scoreboard players set @a timer 0
 
@@ -19,6 +25,7 @@
 	//remove origin and target, if they still exist
 	/scoreboard players tag @e[type=area_effect_cloud,tag=target] remove target
 	/scoreboard players tag @e[type=area_effect_cloud,tag=origin] remove origin
+	/execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
 
 	//calculate amount of powerups possible
 	/scoreboard players set @p[tag=currentPlayer] powerup 0
@@ -28,7 +35,7 @@
 	/execute @e[type=area_effect_cloud,tag=cellMarker,score_team_min=4,score_team=4] ~ ~ ~ /scoreboard players add @p[tag=currentPlayer,team=yellow] powerup 1
 
 	//tp golden marker away
-	/tp @e[type=armor_stand,tag=origin_visual] @e[type=armor_stand,name=stats]
+	///tp @e[type=armor_stand,tag=origin_visual] @e[type=armor_stand,name=stats]
 
 #powerup
 >{"type":"repeating", "conditional":false, "auto":false}
@@ -48,9 +55,14 @@
 	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp = @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] power
 	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp -= #8 power
 	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @p[tag=currentPlayer] powerup += @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp
-	/execute @p[tag=currentPlayer,score_powerup_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players set @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] power 8 //can be maxed
-	/execute @p[tag=currentPlayer,score_powerup=-1] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /tellraw @p[tag=currentPlayer,score_powerup=-1] ["",{"text":"Not enough power left to fully power cell.","color":"red"}] //cannot be maxed
-	/execute @p[tag=currentPlayer,score_powerup=-1] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @p[tag=currentPlayer] powerup -= @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp //cannot be maxed
+	/execute @p[tag=currentPlayer,score_powerup_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players set @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] power 8 			//can be maxed
+	//execute @p[tag=currentPlayer,score_powerup=-1] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /tellraw @p[tag=currentPlayer,score_powerup=-1] ["",{"text":"Not enough power left to fully power cell to 8.","color":"red"}] //cannot be maxed
+	/execute @p[tag=currentPlayer,score_powerup=-1] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @p[tag=currentPlayer] powerup -= @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] powertemp 	//cannot be maxed
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,tag=cellMarker,score_power_min=1,score_power=7] ~ ~ ~ detect ~ ~1 ~ carpet color=magenta /scoreboard players operation @e[type=area_effect_cloud,tag=cellMarker,c=1,r=0] power += @p[tag=currentPlayer] powerup 	//add all remaining power
+	/scoreboard players set @p[tag=currentPlayer] powerup 0
+
+	>{"conditional":false}
 
 	//remove carpet & refresh blocks
 	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet * /execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
@@ -82,24 +94,25 @@
 >{"type":"repeating", "conditional":false, "auto":false}
 	/searge
 >{"type":"chain", "conditional":false, "auto":true}
-	/kill @e[type=item]
-	/clear @a[tag=!currentPlayer]
 	
-	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.0 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.1 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
-
-	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.7 minecraft:air 1 0
+	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
 	
-	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.8 minecraft:carrot_on_a_stick 1 0 {HideFlags:4,Unbreakable:1,display:{Name:"End Turn",Lore:["Rightclick to end your turn.","If you have powerups left, they will be","distributed randomly"]}}
+	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.5 minecraft:carrot_on_a_stick 1 1 {HideFlags:4,Unbreakable:1,display:{Name:"Skip Powerup Phase",Lore:["Rightclick to end your turn.","If you have powerups left, they will be","distributed randomly"]}}
 
-	/clear @p[tag=currentPlayer,score_rightclick_min=1]
+	/replaceitem entity @a[m=2,team=!,tag=!currentPlayer] slot.hotbar.3 stained_glass 1 8 {display:{Name:""}} 
+	/replaceitem entity @a[m=2,team=!,tag=!currentPlayer] slot.hotbar.4 stained_glass 1 8 {display:{Name:""}} 
+	/replaceitem entity @a[m=2,team=!,tag=!currentPlayer] slot.hotbar.5 stained_glass 1 8 {display:{Name:""}} 
 
+	/replaceitem entity @a[m=2,team=!,tag=!currentPlayer,score_rightclick_min=1] slot.hotbar.3 stained_glass 1 8 {display:{Name:""}} 
+	/replaceitem entity @a[m=2,team=!,tag=!currentPlayer,score_rightclick_min=1] slot.hotbar.4 stained_glass 1 8 {display:{Name:""}} 
+	/replaceitem entity @a[m=2,team=!,tag=!currentPlayer,score_rightclick_min=1] slot.hotbar.5 stained_glass 1 8 {display:{Name:""}} 
 
 
 #end_second_phase

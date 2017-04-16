@@ -1,26 +1,26 @@
 >{"moduleStopZ": 3}
 
 
-#elytra_finish
+#elytra_check_finish
 >{"type":"repeating", "conditional":false, "auto":true}
-	/execute @a[tag=elytraEndStart] ~ ~ ~ execute @e[type=area_effect_cloud,name=elytra_finish] ~ ~ ~ blockdata ~2 ~ ~ {auto:1}
+	/execute @a[tag=elytraEndStart] ~ ~ ~ execute @e[type=area_effect_cloud,name=elytra_check_finish] ~ ~ ~ blockdata ~2 ~ ~ {auto:1}
 
 >{"type":"impulse", "conditional":false, "auto":false}
 
-	/blockdata ~ ~ ~ {auto:0}
+	/searge
 
 >{"type":"chain", "conditional":false, "auto":true}
+
 
 	/scoreboard players tag @p[tag=elytraEndStart] add elytraEnd
 
 	//testfor new personal best
 	/scoreboard players operation @p[tag=elytraEnd] elytraTopScore -= @p[tag=elytraEnd] elytraTimer
 	/tellraw @p[tag=elytraEnd,score_elytraTopScore_min=1] ["",{"text":"New Personal Highscore!","color":"gold","italic":true}]
-	/scoreboard players operation @p[tag=elytraEnd,score_elytraTopScore=0] elytraTopScore += @p[tag=elytraEnd] elytraTimer
-	/scoreboard players operation @p[tag=elytraEnd,score_elytraTopScore_min=1] elytraTopScore = @p[tag=elytraEnd] elytraTimer
 
 
-	//
+
+	//prepare scores
 
 	/scoreboard players operation @p[tag=elytraEnd] elytraTimertemp = @p[tag=elytraEnd] elytraTimer
 	/scoreboard players operation @p[tag=elytraEnd] elytraTimerDeci = @p[tag=elytraEnd] elytraTimer
@@ -28,16 +28,43 @@
 	/scoreboard players operation @p[tag=elytraEnd] elytraTimerDeci %= #20 elytraTimer
 	/scoreboard players operation @p[tag=elytraEnd] elytraTimerDeci *= #5 elytraTimer
 
-	/tellraw @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ["",{"text":" You finished the elytra course in ","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"italic":true},{"text":".","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"italic":true},{"text":" seconds.","italic":true}]
-	/tellraw @p[tag=elytraEnd,score_elytraTimerDeci=5] ["",{"text":" You finished the elytra course in ","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"italic":true},{"text":".0","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"italic":true},{"text":" seconds.","italic":true}]
+
+	//tellraws
+	/tellraw @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ["",{"text":" You have finished the elytra course in ","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"italic":true},{"text":".","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"italic":true},{"text":" seconds.","italic":true}]
+	/tellraw @p[tag=elytraEnd,score_elytraTimerDeci=5] ["",{"text":" You have finished the elytra course in ","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"italic":true},{"text":".0","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"italic":true},{"text":" seconds.","italic":true}]
 
 
 	//tellraw @a[tag=dev] ["",{"selector":"@p[tag=elytraEnd]"},{"text":" Ticks: "},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimer"}},{"text":" Seconds: "},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"}},{"text":"."},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"}}]
 
-	//testfor new highscore
+	/execute @p[tag=elytraEnd,score_elytraTopScore_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish_newHS] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @p[tag=elytraEnd,score_elytraTopScore=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
 
-	/scoreboard players tag @e[type=armor_stand,name=stats] remove newHighscore
+	//no teams 
+	/scoreboard players tag @p[tag=elytraEnd,team=red] add redTeam
+	/scoreboard players tag @p[tag=elytraEnd,team=blue] add blueTeam
+	/scoreboard players tag @p[tag=elytraEnd,team=green] add greenTeam
+	/scoreboard players tag @p[tag=elytraEnd,team=yellow] add yellowTeam
 
+
+
+
+
+#elytra_finish_newHS
+>{"type":"impulse", "conditional":false, "auto":false}
+
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+
+	//remove player from their team 
+	/scoreboard teams leave @p[tag=elytraEnd]
+
+
+	//prepare ID
+
+	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker] id -= @p[tag=elytraEnd] id
+
+	//prepare elytraTimertemp
 
 	/execute @e[type=area_effect_cloud,tag=highscore_marker] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker,c=1] elytraTimertemp = @e[type=area_effect_cloud,tag=highscore_marker,c=1] elytraTimer
 	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker] elytraTimertemp -= @p[tag=elytraEnd] elytraTimer
@@ -46,71 +73,72 @@
 
 	//part 1: shift old signs
 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp_min=1] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker6] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker5] elytraTimer 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp_min=1] ~ ~ ~ clone ~-1 ~ ~ ~-1 ~ ~ ~ ~ ~
-	/execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp_min=1] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"6th Place\",\"color\":\"black\",\"bold\":true}"}
 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker5,score_elytraTimertemp_min=1] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker5] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker4] elytraTimer
-	/execute @e[type=area_effect_cloud,tag=highscore_marker5,score_elytraTimertemp_min=1] ~ ~ ~ clone ~-1 ~ ~ ~-1 ~ ~ ~ ~ ~
-	/execute @e[type=area_effect_cloud,tag=highscore_marker5,score_elytraTimertemp_min=1] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"5th Place\",\"color\":\"black\",\"bold\":true}"}
+	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker1] elytraTimer = @p[tag=elytraEnd] elytraTimer
+	/execute @p[tag=elytraEnd,score_elytraTimertemp_min=6] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
+	/execute @p[tag=elytraEnd,score_elytraTimertemp=5] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
+	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ tellraw @a ["",{"selector":"@p[tag=elytraEnd]","italic":true},{"text":" flew the new record time of ","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"color":"dark_aqua","italic":true},{"text":".","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"color":"dark_aqua","italic":true},{"text":" seconds!","color":"dark_aqua","italic":false}]
+	
+	//call finishing up
+	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=elytra_secondphase] ~ ~ ~ /blockdata ~ ~ ~ {auto:0}
 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker4,score_elytraTimertemp_min=1] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker4] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker3] elytraTimer
-	/execute @e[type=area_effect_cloud,tag=highscore_marker4,score_elytraTimertemp_min=1] ~ ~ ~ clone ~2 ~1 ~ ~2 ~1 ~ ~ ~ ~
-	/execute @e[type=area_effect_cloud,tag=highscore_marker4,score_elytraTimertemp_min=1] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"4th Place\",\"color\":\"black\",\"bold\":true}"}
 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker3,score_elytraTimertemp_min=1] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker3] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker2] elytraTimer
-	/execute @e[type=area_effect_cloud,tag=highscore_marker3,score_elytraTimertemp_min=1] ~ ~ ~ clone ~-1 ~ ~ ~-1 ~ ~ ~ ~ ~
-	/execute @e[type=area_effect_cloud,tag=highscore_marker3,score_elytraTimertemp_min=1] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"3rd Place\",\"color\":\"dark_green\",\"bold\":true}"}
+	
 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker2,score_elytraTimertemp_min=1] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker1] elytraTimer
-	/execute @e[type=area_effect_cloud,tag=highscore_marker2,score_elytraTimertemp_min=1] ~ ~ ~ clone ~-1 ~ ~ ~-1 ~ ~ ~ ~ ~
-	/execute @e[type=area_effect_cloud,tag=highscore_marker2,score_elytraTimertemp_min=1] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"2nd Place\",\"color\":\"blue\",\"bold\":true}"}
+	//tellraw @a[tag=dev] ["",{"score":{"name":"@e[tag=highscore_marker1]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker2]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker3]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker4]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker5]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker6]","objective":"elytraTimertemp"}}]
+	
+	/execute @e[type=area_effect_cloud,tag=highscore_marker2,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker3] elytraTimer
+	>{"conditional":true}
+	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] id = @e[type=area_effect_cloud,tag=highscore_marker3] id
+	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker3] id 0
+	/execute @e[type=area_effect_cloud,tag=highscore_marker2] ~ ~ ~ clone ~1 ~ ~ ~1 ~ ~ ~ ~ ~
 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker1] elytraTimer = @p[tag=elytraEnd] elytraTimer
-	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1] ~ ~ ~ scoreboard players tag @e[type=armor_stand,name=stats] add newHighscore
-	/execute @p[tag=elytraEnd,score_elytraTimertemp_min=6] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @p[tag=elytraEnd,score_elytraTimertemp=5] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1] ~ ~ ~ tellraw @a ["",{"selector":"@p[tag=elytraEnd]","italic":true},{"text":" flew the new record time of ","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"color":"dark_aqua","italic":true},{"text":".","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"color":"dark_aqua","italic":true},{"text":" seconds!","color":"dark_aqua","italic":false}]
+	>{"conditional":false}
+	/execute @e[type=area_effect_cloud,tag=highscore_marker3,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker3] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker4] elytraTimer
+	>{"conditional":true}
+	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker3] id = @e[type=area_effect_cloud,tag=highscore_marker4] id
+	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker4] id 0
+	/execute @e[type=area_effect_cloud,tag=highscore_marker3] ~ ~ ~ clone ~-2 ~-1 ~ ~-2 ~-1 ~ ~ ~ ~
+
+	>{"conditional":false}
+	/execute @e[type=area_effect_cloud,tag=highscore_marker4,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker4] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker5] elytraTimer
+	>{"conditional":true}
+	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker4] id = @e[type=area_effect_cloud,tag=highscore_marker5] id
+	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker5] id 0
+	/execute @e[type=area_effect_cloud,tag=highscore_marker4] ~ ~ ~ clone ~1 ~ ~ ~1 ~ ~ ~ ~ ~
+
+	>{"conditional":false}
+	/execute @e[type=area_effect_cloud,tag=highscore_marker5,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker5] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker6] elytraTimer
+	>{"conditional":true}
+	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker5] id = @e[type=area_effect_cloud,tag=highscore_marker6] id
+	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker6] id 0
+	/execute @e[type=area_effect_cloud,tag=highscore_marker5] ~ ~ ~ clone ~1 ~ ~ ~1 ~ ~ ~ ~ ~
+
+	>{"conditional":false}
+	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker6] elytraTimer 10000000
+
 
 
 	/execute @e[type=area_effect_cloud,tag=highscore_marker,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker,score_elytraTimertemp_min=0,c=1] elytraTimertemp < @e[type=area_effect_cloud,tag=highscore_marker,score_elytraTimertemp_min=0] elytraTimertemp
 	/execute @e[type=area_effect_cloud,tag=highscore_marker,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker,score_elytraTimertemp_min=0,c=1] elytraTimertemp -= @e[type=area_effect_cloud,tag=highscore_marker,score_elytraTimertemp_min=0,c=1] elytraTimertemp
 
-	//tellraw @a[tag=dev] ["",{"score":{"name":"@e[tag=highscore_marker1]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker2]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker3]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker4]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker5]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker6]","objective":"elytraTimertemp"}}]
 
+	//reset ID
 
-	//part 2: set new sign
+	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker] id += @p[tag=elytraEnd] id
 
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker2,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"2nd place\",\"bold\":true,\"color\":\"blue\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci=5] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker2,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"2nd place\",\"bold\":true,\"color\":\"blue\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker2,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] elytraTimer = @p[tag=elytraEnd] elytraTimer
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker2,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players tag @e[type=armor_stand,name=stats] add newHighscore
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker3,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"3rd place\",\"bold\":true,\"color\":\"dark_green\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci=5] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker3,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"3rd place\",\"bold\":true,\"color\":\"dark_green\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker3,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker3] elytraTimer = @p[tag=elytraEnd] elytraTimer
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker3,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players tag @e[type=armor_stand,name=stats] add newHighscore
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker4,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"4th place\",\"bold\":true,\"color\":\"black\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci=5] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker4,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"4th place\",\"bold\":true,\"color\":\"black\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker4,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker4] elytraTimer = @p[tag=elytraEnd] elytraTimer
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker4,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players tag @e[type=armor_stand,name=stats] add newHighscore
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker5,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"5th place\",\"bold\":true,\"color\":\"black\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci=5] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker5,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"5th place\",\"bold\":true,\"color\":\"black\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker5,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker5] elytraTimer = @p[tag=elytraEnd] elytraTimer
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker5,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players tag @e[type=armor_stand,name=stats] add newHighscore
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"6th place\",\"bold\":true,\"color\":\"black\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @p[tag=elytraEnd,score_elytraTimerDeci=5] ~ ~ ~ /execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"6th place\",\"bold\":true,\"color\":\"black\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker6] elytraTimer = @p[tag=elytraEnd] elytraTimer
-	/execute @e[type=armor_stand,name=stats,tag=!newHighscore] ~ ~ ~ execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players tag @e[type=armor_stand,name=stats] add newHighscore
+	//call finishing up
+	>{"markerTag":"elytra_secondphase"}
+	/execute @e[type=area_effect_cloud,name=elytra_finish_newSign] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	>{"markerTag":""}
+	/execute @e[type=area_effect_cloud,tag=elytra_secondphase] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}
 
-	/execute @e[type=area_effect_cloud,tag=highscore_marker6,score_elytraTimertemp=0,score_elytraTimertemp_min=0] ~ ~ ~ scoreboard players tag @e[type=armor_stand,name=stats] add newHighscore
+		//reset team 
+	/scoreboard teams join red @p[tag=redTeam]
+	/scoreboard teams join blue @p[tag=blueTeam]
+	/scoreboard teams join green @p[tag=greenTeam]
+	/scoreboard teams join yellow @p[tag=yellowTeam]
 
 
 
-	/scoreboard players set @p[tag=elytraEnd] elytraTimer 0
-	/scoreboard players set @p[tag=elytraEnd] elytraTimerDeci 0
-	/scoreboard players set @p[tag=elytraEnd] elytraTimertemp 0
-	/scoreboard players tag @p[tag=elytraEnd] remove elytra
-	/scoreboard players tag @p[tag=elytraEnd] remove onCourse
-	/scoreboard players tag @p[tag=elytraEnd] remove checkpoint
-	/scoreboard players tag @p[tag=elytraEnd] remove elytraEndStart
-	/scoreboard players tag @p[tag=elytraEnd] remove elytraEnd

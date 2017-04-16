@@ -9,7 +9,7 @@
 
 	/scoreboard players tag @a[tag=currentPlayer] remove currentPlayer
 	/scoreboard players reset * playernr
-	/gamemode 2 @a
+	/gamemode 2 @a[team=!]
 	/clear @a[team=!]
 
 	//off

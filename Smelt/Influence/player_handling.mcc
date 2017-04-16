@@ -153,6 +153,11 @@
 	/scoreboard players reset @a[score_leave_min=1] playernr
 
 
+	/scoreboard players add @a[score_leave_min=1] id 0
+	/execute @a[score_id=0,c=1] ~ ~ ~ /scoreboard players add @e[type=armor_stand,name=stats] id 1
+	/scoreboard players operation @a[score_id=0,c=1] id = @e[type=armor_stand,name=stats] id
+
+
 	/scoreboard players set @a[m=2,x=-10,y=90,z=-10,dx=60,dy=1,dz=60] leave 1
 
 	/tp @a[score_gotoGame_min=1] 21 97 19
@@ -170,6 +175,7 @@
 	/title @a[tag=!firstJoin] times 0 20 0
 	/tellraw @a[tag=!firstJoin] ["",{"text":"Welcome to CONTROL. Rightclick the sign to start the map.\nCheck out the App that inspired this map!\n"},{"text":"-> click here to check out the app <-\n\n","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://play.google.com/store/apps/details?id=com.teremok.influence"}},{"text":"Please send any problems or ideas you have to Plagiatus.\n","color":"gold","italic":false},{"text":"Twitter","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://twitter.com/realplagiatus"}},{"text":" - ","color":"none","italic":false},{"text":"Contact","color":"dark_red","italic":true,"clickEvent":{"action":"open_url","value":"http://plagiatus.net"}}]
 	/scoreboard players set @a[tag=!firstJoin] elytraTopScore 20000000
+	/scoreboard players add @a[tag=!firstJoin] id 0
 
 	/scoreboard players tag @a[tag=!firstJoin] add firstJoin
 

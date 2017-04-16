@@ -168,7 +168,8 @@
 	/spawnpoint @a[tag=!firstJoin] 21 97 19
 	/scoreboard players enable @a[tag=!firstJoin] gotoGame
 	/title @a[tag=!firstJoin] times 0 20 0
-	/tellraw @a[tag=!firstJoin] ["",{"text":"Check out the App that inspired this map!\n"},{"text":"click here","color":"blue","italic":true,"underlined":true,"clickEvent":{"action":"open_url","value":"https://play.google.com/store/apps/details?id=com.teremok.influence"}}]
+	/tellraw @a[tag=!firstJoin] ["",{"text":"Welcome to CONTROL. Rightclick the sign to start the map.\nCheck out the App that inspired this map!\n"},{"text":"-> click here to check out the app <-\n\n","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://play.google.com/store/apps/details?id=com.teremok.influence"}},{"text":"Please send any problems or ideas you have to Plagiatus.\n","color":"gold","italic":false},{"text":"Twitter","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://twitter.com/realplagiatus"}},{"text":" - ","color":"none","italic":false},{"text":"Contact","color":"dark_red","italic":true,"clickEvent":{"action":"open_url","value":"http://plagiatus.net"}}]
+	/scoreboard players set @a[tag=!firstJoin] elytraTopScore 20000000
 
 	/scoreboard players tag @a[tag=!firstJoin] add firstJoin
 

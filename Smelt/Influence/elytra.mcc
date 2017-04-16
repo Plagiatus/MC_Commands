@@ -33,9 +33,9 @@
 
 	//start timer
 	/scoreboard players tag @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] add onCourse
-	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=1,dz=20] elytraTimer 1
-	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=1,dz=20] fireworkTimer 1
-	/scoreboard players add @a[tag=onCourse,score_elytraTimer_min=1] elytraTimer 1	
+	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] elytraTimer 1
+	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] fireworkTimer 1
+	/scoreboard players add @a[tag=onCourse,score_elytraTimer_min=1] elytraTimer 1
 
 
 	//detect landing
@@ -45,6 +45,7 @@
 	/execute @a[tag=onGround] ~ ~ ~ playsound minecraft:entity.wither.death master @a[c=1] ~ ~ ~ .5 2
 	/clear @a[tag=onGround] fireworks
 	/replaceitem entity @a[tag=onGround] slot.weapon.offhand minecraft:fireworks 1
+	/scoreboard players set @a[tag=onGround] fireworkTimer 0
 	/scoreboard players tag @a[tag=onGround] remove onCourse
 	/scoreboard players tag @a[tag=onGround] remove checkpoint
 	/scoreboard players tag @a[tag=onGround] remove onGround
@@ -63,8 +64,8 @@
 	/scoreboard players tag @e[m=2,x=17,y=178,z=51,dx=8,dy=20,dz=1,tag=elytra] add checkpoint
 
 	//finish
-	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=10,dz=8,tag=elytra] add elytraEndStart {Tags:["checkpoint"]}
-	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=10,dz=8,tag=!checkpoint] add cheater {Tags:["elytra"]}
+	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=7,dz=8,tag=elytra] add elytraEndStart {Tags:["checkpoint"]}
+	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=7,dz=8,tag=!checkpoint] add cheater {Tags:["elytra"]}
 
 	/tellraw @a[tag=cheater] ["",{"text":" Stop cheating and use the route you're supposed to use!!!!","color":"red","italic":true}]
 
@@ -74,3 +75,5 @@
 	/scoreboard players tag @p[tag=cheater] remove elytra
 	/scoreboard players tag @p[tag=cheater] remove onCourse
 	/scoreboard players tag @p[tag=cheater] remove cheater
+
+	/scoreboard players tag @p[tag=elytraEndStart] remove onCourse

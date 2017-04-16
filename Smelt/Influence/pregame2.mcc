@@ -12,6 +12,10 @@
 >{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
 	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_3] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"2\",\"bold\":true,\"italic\":true,\"color\":\"dark_green\"}",Text4:"{\"text\":\"(default)\",\"italic\":true}"}
 	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 2"}
+	/blockdata 25 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=red] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=1] power 3"}
+	/blockdata 26 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=blue] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=2,score_team=2] power 3"}
+	/blockdata 27 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=green] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=3,score_team=3] power 3"}
+	/blockdata 28 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=yellow] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=4,score_team=4] power 3"}
 	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"2 (default)","color":"green","bold":false}]
 
 >{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_3"}
@@ -19,6 +23,10 @@
 >{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
 	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_4] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"3\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
 	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 3"}
+	/blockdata 25 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=red] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=1] power 4"}
+	/blockdata 26 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=blue] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=2,score_team=2] power 4"}
+	/blockdata 27 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=green] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=3,score_team=3] power 4"}
+	/blockdata 28 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=yellow] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=4,score_team=4] power 4"}
 	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"3","color":"dark_red","bold":false}]
 
 >{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_4"}
@@ -26,6 +34,10 @@
 >{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
 	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_5] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"4\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
 	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 4"}
+	/blockdata 25 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=red] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=1] power 5"}
+	/blockdata 26 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=blue] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=2,score_team=2] power 5"}
+	/blockdata 27 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=green] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=3,score_team=3] power 5"}
+	/blockdata 28 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=yellow] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=4,score_team=4] power 5"}
 	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"4","color":"dark_red","bold":false}]
 
 >{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_5"}
@@ -33,6 +45,10 @@
 >{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
 	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_6] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"5\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
 	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 5"}
+	/blockdata 25 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=red] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=1] power 6"}
+	/blockdata 26 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=blue] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=2,score_team=2] power 6"}
+	/blockdata 27 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=green] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=3,score_team=3] power 6"}
+	/blockdata 28 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=yellow] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=4,score_team=4] power 6"}
 	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"5","color":"dark_red","bold":false}]
 
 >{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_6"}
@@ -40,6 +56,10 @@
 >{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
 	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_7] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"6\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
 	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 6"}
+	/blockdata 25 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=red] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=1] power 7"}
+	/blockdata 26 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=blue] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=2,score_team=2] power 7"}
+	/blockdata 27 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=green] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=3,score_team=3] power 7"}
+	/blockdata 28 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=yellow] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=4,score_team=4] power 7"}
 	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"6","color":"dark_red","bold":false}]
 
 >{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_7"}
@@ -47,6 +67,10 @@
 >{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
 	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_8] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"7\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
 	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 7"}
+	/blockdata 25 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=red] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=1] power 8"}
+	/blockdata 26 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=blue] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=2,score_team=2] power 8"}
+	/blockdata 27 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=green] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=3,score_team=3] power 8"}
+	/blockdata 28 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=yellow] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=4,score_team=4] power 8"}
 	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"7","color":"dark_red","bold":false}]
 
 >{"type":"impulse", "conditional":false, "auto":false, "markerTag":"startingpower_8"}
@@ -54,6 +78,10 @@
 >{"type":"chain", "conditional":false, "auto":true, "markerTag":""}
 	/blockdata 21 99 1 {Text1:"{\"text\":\" \",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"execute @e[type=area_effect_cloud,tag=startingpower_2] ~ ~ ~ /blockdata ~ ~ ~ {auto:1}\"}}",Text2:"{\"text\":\"Startingpower\",\"bold\":true}",Text3:"{\"text\":\"8\",\"bold\":true,\"italic\":true,\"color\":\"red\"}",Text4:"{\"text\":\"\"}"}
 	/blockdata 16 50 0 {Command:"/scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=4] power 8"}
+	/blockdata 25 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=red] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=1,score_team=1] power 8"}
+	/blockdata 26 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=blue] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=2,score_team=2] power 8"}
+	/blockdata 27 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=green] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=3,score_team=3] power 8"}
+	/blockdata 28 50 0 {Command:"/execute @e[type=armor_stand,name=stats,score_players=2] ~ ~ ~ /execute @a[score_playernr=2,score_playernr_min=2,team=yellow] ~ ~ ~ /scoreboard players set @e[type=area_effect_cloud,tag=spawn,score_team_min=4,score_team=4] power 8"}
 	/title @a actionbar ["",{"text":"Startingpower: ","color":"white","bold":true},{"text":"8","color":"dark_red","bold":false}]
 
 

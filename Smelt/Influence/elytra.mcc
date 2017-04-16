@@ -19,13 +19,22 @@
 	/scoreboard players tag @a[x=-39,y=97,z=14,dx=2,dy=6,dz=10] remove elytra
 
 	//fireworks
-	/scoreboard players set @a[tag=elytra,score_fireworks_min=1] fireworks 0
-	/scoreboard players set @a[tag=elytra] fireworks 1 {Inventory:[{id:"minecraft:fireworks"}]}
-	/replaceitem entity @a[tag=elytra,score_fireworks=0] slot.weapon.offhand minecraft:fireworks 1
+
+	/scoreboard players add @a[tag=onCourse] fireworkTimer 1
+	/scoreboard players set @a[tag=onCourse,score_fireworkTimer_min=40] fireworks 0
+	/scoreboard players set @a[tag=onCourse,score_fireworkTimer_min=40] fireworks 1 {Inventory:[{id:"minecraft:fireworks"}]}
+	/replaceitem entity @a[tag=onCourse,score_fireworkTimer_min=40,score_fireworks=0] slot.weapon.offhand minecraft:fireworks 1
+	/give @a[tag=onCourse,score_fireworkTimer_min=40,score_fireworks_min=1] fireworks 1 0
+	/scoreboard players set @a[tag=onCourse,score_fireworkTimer_min=40] fireworkTimer 0
+
+	/scoreboard players tag @a[tag=giveFirework] remove giveFirework
+	/scoreboard players tag @a[tag=!onCourse] add giveFirework {Tags:["elytra"]} 
+	/replaceitem entity @a[tag=giveFirework,score_fireworks=0] slot.weapon.offhand minecraft:fireworks 1
 
 	//start timer
-	/scoreboard players tag @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=9] add onCourse
-	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=1,dz=9] elytraTimer 1
+	/scoreboard players tag @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] add onCourse
+	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=1,dz=20] elytraTimer 1
+	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=1,dz=20] fireworkTimer 1
 	/scoreboard players add @a[tag=onCourse,score_elytraTimer_min=1] elytraTimer 1	
 
 
@@ -34,11 +43,24 @@
 	/scoreboard players tag @a[tag=onCourse] add onGround {OnGround:1b}
 	/tp @a[tag=onGround] -40 97 19 90 0
 	/execute @a[tag=onGround] ~ ~ ~ playsound minecraft:entity.wither.death master @a[c=1] ~ ~ ~ .5 2
+	/clear @a[tag=onGround] fireworks
+	/replaceitem entity @a[tag=onGround] slot.weapon.offhand minecraft:fireworks 1
 	/scoreboard players tag @a[tag=onGround] remove onCourse
+	/scoreboard players tag @a[tag=onGround] remove checkpoint
 	/scoreboard players tag @a[tag=onGround] remove onGround
 
+	//show timer
+	/execute @a[tag=onCourse] ~ ~ ~ /scoreboard players operation @a[tag=onCourse,c=1] elytraTimertemp = @a[tag=onCourse,c=1] elytraTimer
+	/execute @a[tag=onCourse] ~ ~ ~ /scoreboard players operation @a[tag=onCourse,c=1] elytraTimerDeci = @a[tag=onCourse,c=1] elytraTimer
+	/execute @a[tag=onCourse] ~ ~ ~ /scoreboard players operation @a[tag=onCourse,c=1] elytraTimertemp /= #20 elytraTimer
+	/execute @a[tag=onCourse] ~ ~ ~ /scoreboard players operation @a[tag=onCourse,c=1] elytraTimerDeci %= #20 elytraTimer
+	/execute @a[tag=onCourse] ~ ~ ~ /scoreboard players operation @a[tag=onCourse,c=1] elytraTimerDeci *= #5 elytraTimer
+
+	/execute @a[tag=onCourse,score_elytraTimerDeci_min=6] ~ ~ ~ /title @a[tag=onCourse,c=1] actionbar ["",{"score":{"name":"@a[tag=onCourse,c=1]","objective":"elytraTimertemp"}},{"text":"."},{"score":{"name":"@a[tag=onCourse,c=1]","objective":"elytraTimerDeci"}}]
+	/execute @a[tag=onCourse,score_elytraTimerDeci=5] ~ ~ ~ /title @a[tag=onCourse,c=1] actionbar ["",{"score":{"name":"@a[tag=onCourse,c=1]","objective":"elytraTimertemp"}},{"text":".0"},{"score":{"name":"@a[tag=onCourse,c=1]","objective":"elytraTimerDeci"}}]
+
 	//checkpoint
-	/scoreboard players tag @e[m=2,x=17,y=114,z=51,dx=8,dy=4,dz=1,tag=elytra] add checkpoint
+	/scoreboard players tag @e[m=2,x=17,y=178,z=51,dx=8,dy=20,dz=1,tag=elytra] add checkpoint
 
 	//finish
 	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=10,dz=8,tag=elytra] add elytraEndStart {Tags:["checkpoint"]}

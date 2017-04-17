@@ -149,6 +149,8 @@
 	/scoreboard players set @a[score_leave_min=1] elytraTimer 0
 	/title @a[score_leave_min=1] times 0 20 0
 
+	/scoreboard players add @a[score_leave_min=1] elytraTopScore 0
+ 	/scoreboard players set @a[score_elytraTopScore=0] elytraTopScore 20000000
 
 	/scoreboard players reset @a[score_leave_min=1] playernr
 

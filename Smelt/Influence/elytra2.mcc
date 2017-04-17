@@ -72,22 +72,27 @@
 	//tellraw @a[tag=dev] ["",{"score":{"name":"@e[tag=highscore_marker1]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker2]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker3]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker4]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker5]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker6]","objective":"elytraTimertemp"}}]
 
 	//part 1: shift old signs
-
-
-	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker1] elytraTimer = @p[tag=elytraEnd] elytraTimer
-	/execute @p[tag=elytraEnd,score_elytraTimertemp_min=6] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @p[tag=elytraEnd,score_elytraTimertemp=5] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
-	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ tellraw @a ["",{"selector":"@p[tag=elytraEnd]","italic":true},{"text":" flew the new record time of ","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"color":"dark_aqua","italic":true},{"text":".","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"color":"dark_aqua","italic":true},{"text":" seconds!","color":"dark_aqua","italic":false}]
+ 
+	//execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker1] elytraTimer = @p[tag=elytraEnd] elytraTimer
+	//execute @p[tag=elytraEnd,score_elytraTimertemp_min=6] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
+	//execute @p[tag=elytraEnd,score_elytraTimertemp=5] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ blockdata ~ ~ ~ {Text1:"{\"text\":\"1st place\",\"bold\":true,\"color\":\"gold\"}",Text2:"{\"selector\":\"@p[tag=elytraEnd]\"}",Text3:"[\"\",{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimertemp\"}},{\"text\":\".0\"},{\"score\":{\"name\":\"@p[tag=elytraEnd]\",\"objective\":\"elytraTimerDeci\"}},{\"text\":\" s\"}]"}
+	//execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ tellraw @a ["",{"selector":"@p[tag=elytraEnd]","italic":true},{"text":" flew the new record time of ","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"color":"dark_aqua","italic":true},{"text":".","color":"dark_aqua","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"color":"dark_aqua","italic":true},{"text":" seconds!","color":"dark_aqua","italic":false}]
 	
 	//call finishing up
-	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
-	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=elytra_secondphase] ~ ~ ~ /blockdata ~ ~ ~ {auto:0}
+	//execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	//execute @e[type=area_effect_cloud,tag=highscore_marker1,score_elytraTimertemp_min=1,score_id=0,score_id_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=elytra_secondphase] ~ ~ ~ /blockdata ~ ~ ~ {auto:0}
 
 
 	
 
 	//tellraw @a[tag=dev] ["",{"score":{"name":"@e[tag=highscore_marker1]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker2]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker3]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker4]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker5]","objective":"elytraTimertemp"}},{"text":" - "},{"score":{"name":"@e[tag=highscore_marker6]","objective":"elytraTimertemp"}}]
 	
+	/execute @e[type=area_effect_cloud,tag=highscore_marker1,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker1] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker2] elytraTimer
+	>{"conditional":true}
+	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker1] id = @e[type=area_effect_cloud,tag=highscore_marker2] id
+	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker2] id 0
+	/execute @e[type=area_effect_cloud,tag=highscore_marker1] ~ ~ ~ clone ~1 ~ ~ ~1 ~ ~ ~ ~ ~	
+
 	/execute @e[type=area_effect_cloud,tag=highscore_marker2,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker3] elytraTimer
 	>{"conditional":true}
 	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] id = @e[type=area_effect_cloud,tag=highscore_marker3] id

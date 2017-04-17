@@ -17,6 +17,7 @@
 
 	//notStart
 	/scoreboard players tag @a[x=-39,y=97,z=14,dx=2,dy=6,dz=10] remove elytra
+	/clear @a[x=-39,y=97,z=14,dx=2,dy=6,dz=10] fireworks
 
 	//fireworks
 
@@ -32,10 +33,11 @@
 	/replaceitem entity @a[tag=giveFirework,score_fireworks=0] slot.weapon.offhand minecraft:fireworks 1
 
 	//start timer
+	/scoreboard players add @a[tag=onCourse] elytraTimer 1
 	/scoreboard players tag @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] add onCourse
-	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] elytraTimer 1
+	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] elytraTimer 0
 	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] fireworkTimer 1
-	/scoreboard players add @a[tag=onCourse,score_elytraTimer_min=1] elytraTimer 1
+
 
 
 	//detect landing

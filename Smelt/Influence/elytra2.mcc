@@ -93,6 +93,7 @@
 	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker2] id 0
 	/execute @e[type=area_effect_cloud,tag=highscore_marker1] ~ ~ ~ clone ~1 ~ ~ ~1 ~ ~ ~ ~ ~	
 
+	>{"conditional":false}
 	/execute @e[type=area_effect_cloud,tag=highscore_marker2,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker3] elytraTimer
 	>{"conditional":true}
 	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker2] id = @e[type=area_effect_cloud,tag=highscore_marker3] id
@@ -117,7 +118,7 @@
 	/execute @e[type=area_effect_cloud,tag=highscore_marker5,score_id=0,score_id_min=0] ~ ~ ~ scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker5] elytraTimer = @e[type=area_effect_cloud,tag=highscore_marker6] elytraTimer
 	>{"conditional":true}
 	/scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker5] id = @e[type=area_effect_cloud,tag=highscore_marker6] id
-	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker6] id 0
+	/scoreboard players set @e[type=area_effect_cloud,tag=highscore_marker6] id -100000
 	/execute @e[type=area_effect_cloud,tag=highscore_marker5] ~ ~ ~ clone ~1 ~ ~ ~1 ~ ~ ~ ~ ~
 
 	>{"conditional":false}

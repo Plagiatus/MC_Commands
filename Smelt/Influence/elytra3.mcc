@@ -129,8 +129,8 @@
 >{"type":"chain", "conditional":false, "auto":true}
 
 	//reset elytraTopScore
-	/scoreboard players operation @p[tag=elytraEnd,score_elytraTopScore=0] elytraTopScore += @p[tag=elytraEnd] elytraTimer
 	/scoreboard players operation @p[tag=elytraEnd,score_elytraTopScore_min=1] elytraTopScore = @p[tag=elytraEnd] elytraTimer
+	/scoreboard players operation @p[tag=elytraEnd,score_elytraTopScore=0] elytraTopScore += @p[tag=elytraEnd] elytraTimer
 
 
 	//cleanup

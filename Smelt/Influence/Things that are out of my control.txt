@@ -1,0 +1,16 @@
+placing fireworks while flying in adventure mode.
+https://bugs.mojang.com/browse/MC-116254
+https://bugs.mojang.com/browse/MC-116255
+
+glowing effect jittering
+https://bugs.mojang.com/browse/MC-91119
+
+"Invalid Trigger" Messages.
+https://bugs.mojang.com/browse/MC-116263
+
+Framerate slightly dropping while in tutorial area
+I'm already using structure blocks for the cloning. :/
+
+
+Expooits I'm willing to leave in:
+there is a way to get 2 fireworks at the very start of the elytra course instead of one.

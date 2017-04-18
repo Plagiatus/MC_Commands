@@ -202,7 +202,7 @@
 	/setblock -23 94 9 minecraft:redstone_block
 	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7] {CustomName:""}
 	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=1,score_id=1] {CustomName:"2"}
-	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=4,score_id=4] {CustomName:"2"}
+	/entitydata @e[type=area_effect_cloud,tag=Tutorial,score_tutorial_min=7,score_tutorial=7,score_id_min=4,score_id=4] {CustomName:"3"}
 
 >{"type":"impulse", "conditional":false, "auto":false, "markerTag":"tutorial_7_step_1"}
 	/blockdata ~ ~ ~ {auto:0}

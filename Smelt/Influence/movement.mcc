@@ -226,6 +226,7 @@ $target = @e[type=area_effect_cloud,tag=target]
 	/scoreboard players reset @a[team=!,score_amountofcells=0] playernr
 	/execute @a[team=!,score_amountofcells=0] ~ ~ ~ /tellraw @a ["",{"selector":"@a[team=!,score_amountofcells=0]"},{"text":" was overpowered and is out of the game.","color":"red"}]
 	/tp @a[team=!,score_amountofcells=0] 21 97 19
+	/effect @a[team=!,score_amountofcells=0] clear
 	/scoreboard teams leave @a[team=!,score_amountofcells=0]
 
 	

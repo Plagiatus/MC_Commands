@@ -1,0 +1,35 @@
+>{"moduleStopZ": 2}
+
+
+#elytra_finish
+
+>{"type":"impulse", "conditional":false, "auto":false}
+
+	/blockdata ~ ~ ~ {auto:0}
+
+>{"type":"chain", "conditional":false, "auto":true}
+
+	//reset elytraTopScore
+	/scoreboard players operation @p[tag=elytraEnd,score_elytraTopScore_min=1] elytraTopScore = @p[tag=elytraEnd] elytraTimer
+	/scoreboard players operation @p[tag=elytraEnd,score_elytraTopScore=0] elytraTopScore += @p[tag=elytraEnd] elytraTimer
+
+
+	//cleanup
+	/scoreboard players set @p[tag=elytraEnd] elytraTimer 0
+	/scoreboard players set @p[tag=elytraEnd] elytraTimerDeci 0
+	/scoreboard players set @p[tag=elytraEnd] elytraTimertemp 0
+	/scoreboard players tag @p[tag=elytraEnd] remove elytra
+	//scoreboard players tag @p[tag=elytraEnd] remove onCourse
+	/scoreboard players tag @p[tag=elytraEnd] remove checkpoint
+	/scoreboard players tag @p[tag=elytraEnd] remove elytraEndStart
+	/scoreboard players tag @p[tag=elytraEnd] remove elytraEnd
+
+	//teams cleanup
+	/scoreboard players tag @a[tag=redTeam] remove redTeam
+	/scoreboard players tag @a[tag=blueTeam] remove blueTeam
+	/scoreboard players tag @a[tag=greenTeam] remove greenTeam
+	/scoreboard players tag @a[tag=yellowTeam] remove yellowTeam
+
+	//reactivate for next player 
+
+	/execute @e[type=area_effect_cloud,name=elytra_check_finish] ~ ~ ~ /blockdata ~2 ~ ~ {auto:0}

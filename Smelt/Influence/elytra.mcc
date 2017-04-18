@@ -10,10 +10,11 @@
 
 >{"type":"chain", "conditional":false, "auto":true}
 	//start
-	/tellraw @a[x=-43,y=97,z=14,dx=2,dy=1,dz=10,tag=!elytra,m=2] ["",{"text":"Welcome to the elytra mini-minigame. You can use this to  Try to finish the race as fast as you can without landing.\n","italic":true},{"text":"WARNING: Flashing colors.","color":"dark_red"}]
+	/tellraw @a[x=-43,y=97,z=14,dx=2,dy=1,dz=10,tag=!elytraText,m=2] ["",{"text":"Try this elytra minigame while you wait! The quickest times will get a spot on the leaderboard.\n","italic":true},{"text":"WARNING: Flashing colors.","color":"dark_red"}]
 	/replaceitem entity @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,tag=!elytra,m=2] slot.armor.chest minecraft:elytra 1 0 {HideFlags:5,Unbreakable:1,ench:[{id:10,lvl:1}]}
 	/replaceitem entity @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,tag=!elytra,m=2] slot.weapon.offhand minecraft:fireworks 1
 	/scoreboard players tag @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,m=2,tag=!elytra] add elytra
+	/scoreboard players tag @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,m=2,tag=!elytraText] add elytraText
 
 	//notStart
 	/scoreboard players tag @a[x=-39,y=97,z=14,dx=2,dy=6,dz=10] remove elytra
@@ -28,15 +29,19 @@
 	/give @a[tag=onCourse,score_fireworkTimer_min=40,score_fireworks_min=1] fireworks 1 0
 	/scoreboard players set @a[tag=onCourse,score_fireworkTimer_min=40] fireworkTimer 0
 
-	/scoreboard players tag @a[tag=giveFirework] remove giveFirework
-	/scoreboard players tag @a[tag=!onCourse] add giveFirework {Tags:["elytra"]} 
-	/replaceitem entity @a[tag=giveFirework,score_fireworks=0] slot.weapon.offhand minecraft:fireworks 1
+	//scoreboard players tag @a[tag=giveFirework] remove giveFirework
+	//scoreboard players tag @a[tag=!onCourse] add giveFirework {Tags:["elytra"]} 
+	//scoreboard players set @a[tag=giveFirework] fireworks 0
+	//scoreboard players set @a[tag=giveFirework] fireworks 1 {Inventory:[{id:"minecraft:fireworks"}]}
+	//replaceitem entity @a[tag=giveFirework,score_fireworks=0] slot.weapon.offhand minecraft:fireworks 1
 
 	//start timer
 	/scoreboard players add @a[tag=onCourse] elytraTimer 1
 	/scoreboard players tag @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] add onCourse
 	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] elytraTimer 0
 	/scoreboard players set @a[tag=elytra,x=-66,y=93,z=14,dx=22,dy=5,dz=20] fireworkTimer 1
+	/replaceitem entity @a[tag=elytra,x=-66,y=97,z=14,dx=22,dy=2,dz=20] slot.weapon.offhand minecraft:fireworks 1
+
 
 
 
@@ -63,7 +68,8 @@
 	/execute @a[tag=onCourse,score_elytraTimerDeci=5] ~ ~ ~ /title @a[tag=onCourse,c=1] actionbar ["",{"score":{"name":"@a[tag=onCourse,c=1]","objective":"elytraTimertemp"}},{"text":".0"},{"score":{"name":"@a[tag=onCourse,c=1]","objective":"elytraTimerDeci"}}]
 
 	//checkpoint
-	/scoreboard players tag @e[m=2,x=17,y=178,z=51,dx=8,dy=20,dz=1,tag=elytra] add checkpoint
+	/scoreboard players tag @e[m=2,x=17,y=178,z=51,dx=10,dy=25,dz=2,tag=elytra] add checkpoint
+	/fill 25 179 52 17 198 52
 
 	//finish
 	/scoreboard players tag @a[m=2,x=56,y=96,z=15,dx=1,dy=7,dz=8,tag=elytra] add elytraEndStart {Tags:["checkpoint"]}

@@ -162,7 +162,7 @@
 
 	/scoreboard players set @a[m=2,x=-10,y=90,z=-10,dx=60,dy=1,dz=60] leave 1
 
-	/tp @a[score_gotoGame_min=1] 21 97 19
+	/tp @a[score_gotoGame_min=1] 21 97 19 180 -9
 	/scoreboard players reset @a[score_gotoGame_min=1] gotoGame
 
 #first_timer_join

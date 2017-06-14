@@ -68,6 +68,12 @@
 	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet * /execute @e[type=area_effect_cloud,name=blocks] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
 	/execute @e[type=area_effect_cloud,tag=cellMarker] ~ ~ ~ detect ~ ~1 ~ carpet * /setblock ~ ~1 ~ air
 
+	//check for correct coas when clicked
+	/scoreboard players tag @a[score_rightclick_min=1] add forfeit {SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{display:{Name:"FORFEIT"}}}}
+	/scoreboard players set @a[score_rightclick_min=1] rightclick 0 {SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{display:{Name:"FORFEIT"}}}}
+
+
+
 	//end phase
 	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=red] ~ ~ ~ /scoreboard players add @r[type=area_effect_cloud,score_power_min=1,score_power=7,score_team=1,score_team_min=1] power 1
 	/execute @p[tag=currentPlayer,score_rightclick_min=1,team=red] ~ ~ ~ /scoreboard players remove @p[tag=currentPlayer,score_rightclick_min=1,team=red] powerup 1
@@ -95,14 +101,14 @@
 	/searge
 >{"type":"chain", "conditional":false, "auto":true}
 	
-	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:purpur_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:jungle_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
-	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:sandstone_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:nether_brick_stairs","minecraft:brick_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=red] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:nether_brick_stairs","minecraft:brick_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:purpur_stairs","minecraft:stone_brick_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=blue] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:purpur_stairs","minecraft:stone_brick_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:jungle_stairs","minecraft:stone_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=green] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:jungle_stairs","minecraft:stone_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.3 minecraft:carpet 1 1 {CanPlaceOn:["minecraft:sandstone_stairs","minecraft:oak_stairs"],HideFlags:16,display:{Name:"+1",Lore:["Rightclick to select a cell to powerup +1"]}}
+	/replaceitem entity @p[tag=currentPlayer,team=yellow] slot.hotbar.4 minecraft:carpet 1 2 {CanPlaceOn:["minecraft:sandstone_stairs","minecraft:oak_stairs"],HideFlags:16,display:{Name:"+max",Lore:["Rightclick to select a cell to powerup +max"]}}
 	
 	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.5 minecraft:carrot_on_a_stick 1 1 {HideFlags:4,Unbreakable:1,display:{Name:"Skip Powerup Phase",Lore:["Rightclick to end your turn.","If you have powerups left, they will be","distributed randomly"]}}
 

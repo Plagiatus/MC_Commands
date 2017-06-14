@@ -139,7 +139,7 @@
 	/clear @a[score_leave_min=1]
 	/scoreboard teams leave @a[score_leave_min=1]
 	/effect @a[score_leave_min=1] clear
-	/tp @a[score_leave_min=1] -18 79 59 180 0
+	/tp @a[score_leave_min=1] 21 97 19 180 -9
 	/scoreboard players enable @a[score_leave_min=1] gotoGame
 	/gamemode 2 @a[score_leave_min=1]
 	/scoreboard players tag @a[score_leave_min=1] remove elytra
@@ -170,12 +170,12 @@
 	/searge
 
 >{"type":"chain", "conditional":false, "auto":true}
-	/tp @a[tag=!firstJoin] -18 79 59 180 0
+	/tp @a[tag=!firstJoin] 21 97 19 180 -9
 	/gamemode adventure @a[m=!2,tag=!firstJoin]
 	/spawnpoint @a[tag=!firstJoin] 21 97 19
-	/scoreboard players enable @a[tag=!firstJoin] gotoGame
+	//scoreboard players enable @a[tag=!firstJoin] gotoGame
 	/title @a[tag=!firstJoin] times 0 20 0
-	/tellraw @a[tag=!firstJoin] ["",{"text":"Welcome to CONTROL. Rightclick the sign to start the map.\nCheck out the App that inspired this map!\n"},{"text":"-> click here to check out the app <-\n\n","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://play.google.com/store/apps/details?id=com.teremok.influence"}},{"text":"Please send any problems or ideas you have to Plagiatus.\n","color":"gold","italic":false},{"text":"Twitter","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://twitter.com/realplagiatus"}},{"text":" - ","color":"none","italic":false},{"text":"Contact","color":"dark_red","italic":true,"clickEvent":{"action":"open_url","value":"click here"}}]
+	/tellraw @a[tag=!firstJoin] ["",{"text":"Welcome to CONTROL.\nCheck out the App that inspired this map!\n"},{"text":"-> click here to check out the app <-\n\n","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://play.google.com/store/apps/details?id=com.teremok.influence"}},{"text":"Please send any problems or ideas you have to Plagiatus.\n","color":"gold","italic":false},{"text":"Twitter","color":"blue","italic":true,"clickEvent":{"action":"open_url","value":"https://twitter.com/realplagiatus"}},{"text":" - ","color":"none","italic":false},{"text":"Contact","color":"dark_red","italic":true,"clickEvent":{"action":"open_url","value":"http://plagiatus.net"}}]
 	/scoreboard players set @a[tag=!firstJoin] elytraTopScore 20000000
 	/scoreboard players add @a[tag=!firstJoin] id 0
 

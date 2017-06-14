@@ -1,3 +1,6 @@
+>{"moduleStopZ": 6}
+
+
 $origin = @e[type=area_effect_cloud,tag=origin]
 $target = @e[type=area_effect_cloud,tag=target]
 
@@ -43,6 +46,10 @@ $target = @e[type=area_effect_cloud,tag=target]
 	/execute @p[tag=currentPlayer,score_maxPower=1,score_maxPower_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
 	/execute @p[tag=currentPlayer,score_maxPower=1,score_maxPower_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~2 ~ ~ {auto:1}
 	/execute @p[tag=currentPlayer,score_maxPower=1,score_maxPower_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=create_origin] ~4 ~ ~ /blockdata ~ ~ ~ {auto:0}
+	
+	//check for correct coas when clicked
+	/scoreboard players tag @a[score_rightclick_min=1] add forfeit {SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{display:{Name:"FORFEIT"}}}}
+	/scoreboard players set @a[score_rightclick_min=1] rightclick 0 {SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{display:{Name:"FORFEIT"}}}}
 
 	//end phase 
 	/execute @p[tag=currentPlayer,score_rightclick_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
@@ -134,6 +141,9 @@ $target = @e[type=area_effect_cloud,tag=target]
 	//enemy field
 	/execute $target ~ ~ ~ /execute @e[type=area_effect_cloud,name=fight-calc] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}	
 
+	//check for correct coas when clicked
+	/scoreboard players tag @a[score_rightclick_min=1] add forfeit {SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{display:{Name:"FORFEIT"}}}}
+	/scoreboard players set @a[score_rightclick_min=1] rightclick 0 {SelectedItem:{id:"minecraft:carrot_on_a_stick",tag:{display:{Name:"FORFEIT"}}}}
 
 
 	//end phase 
@@ -193,7 +203,7 @@ $target = @e[type=area_effect_cloud,tag=target]
 >{"type":"repeating", "conditional":false, "auto":false}
 	/searge
 >{"type":"chain", "conditional":false, "auto":true}
-	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.3 minecraft:carpet 1 0 {CanPlaceOn:["minecraft:glass","minecraft:cobblestone","minecraft:jungle_stairs","minecraft:purpur_stairs","minecraft:sandstone_stairs","minecraft:nether_brick_stairs"],HideFlags:16,display:{Name:"Selector",Lore:["Rightclick on top of a cell to select it"]}}
+	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.3 minecraft:carpet 1 0 {CanPlaceOn:["minecraft:glass","minecraft:cobblestone","minecraft:jungle_stairs","minecraft:purpur_stairs","minecraft:sandstone_stairs","minecraft:nether_brick_stairs","minecraft:brick_stairs","minecraft:stone_brick_stairs","minecraft:stone_stairs","minecraft:oak_stairs"],HideFlags:16,display:{Name:"Selector",Lore:["Rightclick on top of a cell to select it"]}}
 	/replaceitem entity @p[tag=currentPlayer] slot.hotbar.5 minecraft:carrot_on_a_stick 1 2 {HideFlags:4,Unbreakable:1,display:{Name:"End Phase",Lore:["Rightclick to continue into the second phase"]}}
 	/replaceitem entity @a[m=2,team=!,tag=!currentPlayer] slot.hotbar.3 stained_glass 1 8 {display:{Name:""}}
 	/replaceitem entity @a[m=2,team=!] slot.hotbar.4 stained_glass 1 8 {display:{Name:""}}
@@ -229,37 +239,4 @@ $target = @e[type=area_effect_cloud,tag=target]
 	/effect @a[team=!,score_amountofcells=0] clear
 	/scoreboard teams leave @a[team=!,score_amountofcells=0]
 
-	
-#timer
 
->{"type":"repeating", "conditional":false, "auto":false}
-	/searge
-
->{"type":"chain", "conditional":false, "auto":true}
-	/scoreboard players add @p[tag=currentPlayer] timer 1
-	/tellraw @p[tag=currentPlayer,score_timer=400,score_timer_min=400] ["",{"text":"You haven't done any action for the last 20 seconds. Do something in the next 10 seconds or your turn will be ended.","color":"dark_red","italic":true}]
-	/execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
-	/execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=skip_turn] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
-	/title @p[tag=currentPlayer,score_timer_min=400,score_timer=600] title ["",{"text":"WARNING","color":"red"}]
-
-
-#skip_turn
-
->{"type":"impulse", "conditional":false, "auto":false}
-	/blockdata ~ ~ ~ {auto:0}
->{"type":"chain", "conditional":false, "auto":true}
-	/blockdata ~1 ~ ~ {auto:1}
->{"type":"impulse", "conditional":false, "auto":false}
-	/blockdata ~ ~ ~ {auto:0}
->{"type":"chain", "conditional":false, "auto":true}
-	/blockdata ~1 ~ ~ {auto:1}
->{"type":"impulse", "conditional":false, "auto":false}
-	/blockdata ~ ~ ~ {auto:0}
->{"type":"chain", "conditional":false, "auto":true}
-	/tellraw @a ["",{"selector":"@p[tag=currentPlayer]"},{"text":" is not responding. Forcing advancement of their turn.","color":"dark_red","italic":true}]
-	/scoreboard players set @p[tag=currentPlayer] rightclick 1
-
-#game_over
-
->{"type":"repeating", "conditional":false, "auto":false}
-	/execute @e[name=stats,type=armor_stand,score_players=1,score_players_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=reset] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}

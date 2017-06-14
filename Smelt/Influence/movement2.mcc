@@ -1,0 +1,35 @@
+>{"moduleStopZ": 4}
+
+#timer
+
+>{"type":"repeating", "conditional":false, "auto":false}
+	/searge
+
+>{"type":"chain", "conditional":false, "auto":true}
+	/scoreboard players add @p[tag=currentPlayer] timer 1
+	/tellraw @p[tag=currentPlayer,score_timer=400,score_timer_min=400] ["",{"text":"You haven't done any action for the last 20 seconds. Do something in the next 10 seconds or your turn will be ended.","color":"dark_red","italic":true}]
+	/execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=start_second_phase] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/execute @p[tag=currentPlayer,score_timer_min=600,score_timer=600] ~ ~ ~ /execute @e[type=area_effect_cloud,name=skip_turn] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/title @p[tag=currentPlayer,score_timer_min=400,score_timer=600] title ["",{"text":"WARNING","color":"red"}]
+
+
+#skip_turn
+
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	/blockdata ~1 ~ ~ {auto:1}
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	/blockdata ~1 ~ ~ {auto:1}
+>{"type":"impulse", "conditional":false, "auto":false}
+	/blockdata ~ ~ ~ {auto:0}
+>{"type":"chain", "conditional":false, "auto":true}
+	/tellraw @a ["",{"selector":"@p[tag=currentPlayer]"},{"text":" is not responding. Forcing advancement of their turn.","color":"dark_red","italic":true}]
+	/scoreboard players set @p[tag=currentPlayer] rightclick 1
+
+#game_over
+
+>{"type":"repeating", "conditional":false, "auto":false}
+	/execute @e[name=stats,type=armor_stand,score_players=1,score_players_min=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=reset] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}

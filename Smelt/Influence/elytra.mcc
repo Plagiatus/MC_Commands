@@ -10,7 +10,7 @@
 
 >{"type":"chain", "conditional":false, "auto":true}
 	//start
-	/tellraw @a[x=-43,y=97,z=14,dx=2,dy=1,dz=10,tag=!elytraText,m=2] ["",{"text":"Try this elytra minigame while you wait! The quickest times will get a spot on the leaderboard.\n","italic":true},{"text":"WARNING: Flashing colors.","color":"dark_red"}]
+	/tellraw @a[x=-43,y=97,z=14,dx=2,dy=1,dz=10,tag=!elytraText,m=2] ["",{"text":"\nTry this elytra minigame while you wait! The quickest times will get a spot on the leaderboard.\n","italic":true,"color":"green"},{"text":"WARNING: Flashing colors.","color":"dark_red"},{"text":"\nTweet your best scores @therealplagiatus","color":"dark_gray"}]
 	/replaceitem entity @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,tag=!elytra,m=2] slot.armor.chest minecraft:elytra 1 0 {HideFlags:5,Unbreakable:1,ench:[{id:10,lvl:1}]}
 	/replaceitem entity @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,tag=!elytra,m=2] slot.weapon.offhand minecraft:fireworks 1
 	/scoreboard players tag @a[x=-43,y=97,z=14,dx=2,dy=2,dz=10,m=2,tag=!elytra] add elytra

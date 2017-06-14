@@ -33,11 +33,25 @@
 	/tellraw @p[tag=elytraEnd,score_elytraTimerDeci_min=6] ["",{"text":" You have finished the elytra course in ","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"italic":true},{"text":".","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"italic":true},{"text":" seconds.","italic":true}]
 	/tellraw @p[tag=elytraEnd,score_elytraTimerDeci=5] ["",{"text":" You have finished the elytra course in ","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"},"italic":true},{"text":".0","italic":true},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"},"italic":true},{"text":" seconds.","italic":true}]
 
+	//calculate if global highscore
+	/execute @p[tag=elytraEnd,score_elytraTopScore_min=1] ~ ~ ~ /scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker] elytraTimer -= @p[tag=elytraEnd,score_elytraTopScore_min=1] elytraTimer
 
-	//tellraw @a[tag=dev] ["",{"selector":"@p[tag=elytraEnd]"},{"text":" Ticks: "},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimer"}},{"text":" Seconds: "},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimertemp"}},{"text":"."},{"score":{"name":"@p[tag=elytraEnd]","objective":"elytraTimerDeci"}}]
 
-	/execute @p[tag=elytraEnd,score_elytraTopScore_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish_newHS] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/nothing
+	/nothing
+
+	//start either with new HS or without
+	/execute @p[tag=elytraEnd,score_elytraTopScore_min=1] ~ ~ ~ /execute @e[type=area_effect_cloud,tag=highscore_marker,score_elytraTimer_min=1,c=1] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish_newHS] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	/testforblock ~1 ~ ~ minecraft:chain_command_block * {SuccessCount:0}
+	>{"conditional":true}
+	/execute @e[type=area_effect_cloud,name=elytra_finish] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+	>{"conditional":false}
 	/execute @p[tag=elytraEnd,score_elytraTopScore=0] ~ ~ ~ /execute @e[type=area_effect_cloud,name=elytra_finish] ~ ~ ~ /blockdata ~1 ~ ~ {auto:1}
+
+
+
+	//reset global highscores test 	
+	/execute @p[tag=elytraEnd,score_elytraTopScore_min=1] ~ ~ ~ /scoreboard players operation @e[type=area_effect_cloud,tag=highscore_marker] elytraTimer += @p[tag=elytraEnd,score_elytraTopScore_min=1] elytraTimer
 
 	//no teams 
 	/scoreboard players tag @p[tag=elytraEnd,team=red] add redTeam

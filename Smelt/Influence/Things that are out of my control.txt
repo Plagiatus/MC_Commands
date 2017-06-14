@@ -12,5 +12,6 @@ Framerate slightly dropping while in tutorial area
 I'm already using structure blocks for the cloning. :/
 
 
-Expooits I'm willing to leave in:
-there is a way to get 2 fireworks at the very start of the elytra course instead of one.
+
+there is a way to get 2 fireworks at the very start of the elytra course instead of one by using your first rocket right after jumping.
+it's in there for the more crafty players to get an additonal advantage.

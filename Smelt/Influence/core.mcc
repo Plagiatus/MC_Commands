@@ -106,9 +106,9 @@
 	/blockdata 21 101 1 {Text1:"{\"text\":\"\"}",Text2:"{\"text\":\"Game in\",\"color\":\"dark_gray\",\"italic\":true}",Text3:"{\"text\":\"progress\",\"color\":\"dark_gray\",\"italic\":true}",Text4:"{\"text\":\"\"}"}
 
 	//disable optionsigns
-	/blockdata 19 99 1 {Text1:"{\"text\":\"cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
-	/blockdata 21 99 1 {Text1:"{\"text\":\"cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
-	/blockdata 23 99 1 {Text1:"{\"text\":\"cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 19 99 1 {Text1:"{\"text\":\"Cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 21 99 1 {Text1:"{\"text\":\"Cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
+	/blockdata 23 99 1 {Text1:"{\"text\":\"Cannot change\",\"italic\":true,\"color\":\"white\"}",Text2:"{\"text\":\"options while the\",\"italic\":true,\"color\":\"white\"}",Text3:"{\"text\":\"game is running.\",\"italic\":true,\"color\":\"white\"}",Text4:"{\"text\":\"\"}"}
 
 	//remove "holding barriers"
 	/fill 2 82 0 42 86 38 air 0 replace barrier
